@@ -1,6 +1,5 @@
 import { Container, Grid, Paper } from '@mui/material';
 import React from 'react';
-import { v1 } from 'uuid';
 import { AddNewTodolist } from './AddNewTodolist';
 import { Header } from './Header';
 import { TaskType, Todolist } from './Todolist';
@@ -28,37 +27,34 @@ export function AppWithRedux() {
     const tasks = useSelector<AppStateType, TasksStateType>(state => state.tasks)
 
 
-    function removeTask(id: string, todolist_id: string) {
-        dispatch(removeTaskAC(id, todolist_id))
-    }
-
-    function addTask(title: string, todolist_id: string) {
+    const addTask = (title: string, todolist_id: string) => {
         dispatch(addTaskAC(title, todolist_id))
     }
-
-    function changeStatus(taskId: string, isDone: boolean, todolist_id: string) {
+    const removeTask = (id: string, todolist_id: string) => {
+        dispatch(removeTaskAC(id, todolist_id))
+    }
+    const changeStatus = (taskId: string, isDone: boolean, todolist_id: string) => {
         dispatch(changeTaskStatusAC(taskId, isDone, todolist_id))
     }
-
-    const addTodolist = (title: string) => {
-        dispatch(addTodolistAC(title))
-    }
-
-    const changeFilter = (filter: FilterValuesType, todolist_id: string) => {
-        dispatch(changeTodolistFilterAC(filter, todolist_id))
-    }
-
-    const removeTodoList = (todolist_id: string) => {
-        dispatch(removeTodolistAC(todolist_id))
-    }
-
     const changeSpanValue = (newTitle: string, taskId: string, todolist_id: string) => {
         dispatch(changeTaskTitleAC(taskId, newTitle, todolist_id))
     }
 
+
+
+    const addTodolist = (title: string) => {
+        dispatch(addTodolistAC(title))
+    }
+    const changeFilter = (filter: FilterValuesType, todolist_id: string) => {
+        dispatch(changeTodolistFilterAC(filter, todolist_id))
+    }
+    const removeTodoList = (todolist_id: string) => {
+        dispatch(removeTodolistAC(todolist_id))
+    }
     const changeTodolistTitle = (newTitle: string, todolist_id: string) => {
         dispatch(changeTodolistTitleAC(todolist_id, newTitle))
     }
+
 
     return (
         <>
