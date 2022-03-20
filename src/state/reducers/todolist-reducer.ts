@@ -1,6 +1,6 @@
 import { v1 } from "uuid";
+import { FilterValuesType, TodolistType } from "../../AppWithRedux";
 import { addTodolistAC } from "../reducers/todolists-tasks-reducer";
-import { FilterValuesType, TodolistType } from "../reducers/AppWithReducers";
 
 export const todolistId1 = v1();
 export const todolistId2 = v1();

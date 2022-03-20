@@ -1,12 +1,12 @@
 import { Container, Grid, Paper } from '@mui/material';
 import React, { useReducer } from 'react';
 import { v1 } from 'uuid';
-import { AddNewTodolist } from '../../AddNewTodolist';
-import { Header } from '../../Header';
-import { TaskType, Todolist } from '../../Todolist';
-import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer } from './tasks-reducer';
-import { changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC, todolistsReducer } from './todolist-reducer';
-import { addTodolistAC } from './todolists-tasks-reducer';
+import { AddNewTodolist } from './AddNewTodolist';
+import { Header } from './Header';
+import { TaskType, Todolist } from './Todolist';
+import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer } from './state/reducers/tasks-reducer';
+import { changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC, todolistsReducer } from './state/reducers/todolist-reducer';
+import { addTodolistAC } from './state/reducers/todolists-tasks-reducer';
 
 
 export type FilterValuesType = "all" | "active" | "completed";
