@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     }
 });
 
-export const AddItemForm: React.FC<AddItemFormType> = (props) => {
+export const AddItemForm: React.FC<AddItemFormType> = React.memo((props) => {
     console.log('AddItemForm')
 
     const classes = useStyles();
@@ -37,7 +37,7 @@ export const AddItemForm: React.FC<AddItemFormType> = (props) => {
         if (error !== null) {
             setError(null);
         }
-        if (e.charCode === 13) {
+        if (e.key === 'Enter') {
             addItem();
         }
     };
@@ -74,4 +74,4 @@ export const AddItemForm: React.FC<AddItemFormType> = (props) => {
             </Box>
         </>
     );
-};
+});
