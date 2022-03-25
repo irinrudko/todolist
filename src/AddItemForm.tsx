@@ -23,6 +23,8 @@ const useStyles = makeStyles({
 });
 
 export const AddItemForm: React.FC<AddItemFormType> = (props) => {
+    console.log('AddItemForm')
+
     const classes = useStyles();
 
     let [title, setTitle] = useState("");
@@ -32,7 +34,9 @@ export const AddItemForm: React.FC<AddItemFormType> = (props) => {
         setTitle(e.currentTarget.value);
     };
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null);
+        if (error !== null) {
+            setError(null);
+        }
         if (e.charCode === 13) {
             addItem();
         }

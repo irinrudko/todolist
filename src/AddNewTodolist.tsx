@@ -34,6 +34,8 @@ const style = {
 };
 
 export const AddNewTodolist: React.FC<NewTodolistType> = (props) => {
+    console.log('add new todolist')
+
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
