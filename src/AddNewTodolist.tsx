@@ -3,10 +3,12 @@ import * as React from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import { AddItemForm } from './AddItemForm';
 import { makeStyles } from '@mui/styles';
+import { useCallback } from 'react';
 
 type NewTodolistType = {
     addTodolist: (title: string) => void
 }
+
 
 const useStyles = makeStyles({
     addButton: {
@@ -33,23 +35,28 @@ const style = {
     p: 1,
 };
 
-export const AddNewTodolist: React.FC<NewTodolistType> = (props) => {
+export const AddNewTodolist: React.FC<NewTodolistType> = React.memo((props) => {
     console.log('add new todolist')
 
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => {
+        setOpen(true)
+    };
     const handleClose = () => setOpen(false);
 
-    const addTodolist = (title: string) => {
+
+    const addTodolist = useCallback((title: string) => {
         props.addTodolist(title);
         handleClose()
-    }
+    }, [props.addTodolist])
+
     return (
         <>
             <div className={classes.addButton}>
-                <Fab color="primary" aria-label="add" onClick={handleOpen}>
+                <Fab color="primary" aria-label="add"
+                    onClick={handleOpen}>
                     <AddIcon />
                 </Fab>
             </div>
@@ -70,4 +77,4 @@ export const AddNewTodolist: React.FC<NewTodolistType> = (props) => {
             </div>
         </>
     )
-}
+})

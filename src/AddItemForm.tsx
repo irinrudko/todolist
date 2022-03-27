@@ -22,9 +22,8 @@ const useStyles = makeStyles({
     }
 });
 
-export const AddItemForm: React.FC<AddItemFormType> = React.memo((props) => {
-    console.log('AddItemForm')
 
+export const AddItemForm: React.FC<AddItemFormType> = React.memo((props) => {
     const classes = useStyles();
 
     let [title, setTitle] = useState("");
@@ -34,6 +33,7 @@ export const AddItemForm: React.FC<AddItemFormType> = React.memo((props) => {
         setTitle(e.currentTarget.value);
     };
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+
         if (error !== null) {
             setError(null);
         }

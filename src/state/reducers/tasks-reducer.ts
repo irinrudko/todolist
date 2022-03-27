@@ -65,22 +65,20 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Tasks
             }
         }
         case 'CHANGE-TASK-STATUS': {
-            let newState = { ...state }
-            let todolistTasks = newState[action.todolistId];
-            let task = todolistTasks.find(t => t.id === action.id)
-            if (task) {
-                task.isDone = action.isDone
-            }
-            return newState
+            let todolistTasks = state[action.todolistId];
+            state[action.todolistId] = todolistTasks
+                .map(t => t.id === action.id
+                    ? { ...t, isDone: action.isDone }
+                    : t);
+            return { ...state }
         }
         case 'CHANGE-TASK-TITLE': {
-            let newState = { ...state }
-            let todolistTasks = newState[action.todolistId];
-            let task = todolistTasks.find(t => t.id === action.id)
-            if (task) {
-                task.title = action.newTitle
-            }
-            return newState
+            let todolistTasks = state[action.todolistId];
+            state[action.todolistId] = todolistTasks
+                .map(t => t.id === action.id
+                    ? { ...t, title: action.newTitle }
+                    : t);
+            return { ...state }
         }
         case 'ADD-TODOLIST': {
 

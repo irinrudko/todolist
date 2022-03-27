@@ -6,19 +6,21 @@ import { useState } from 'react';
 type EditableSpanType = {
     title: string
     onChange: (title: string) => void
-    isDone?: boolean
+    isDone?: boolean //если есть необязательный параметр, то React.memo не работает
 }
 
-export const EditableSpan: React.FC<EditableSpanType> = (props) => {
+//TODO сделать окончание редактирования на onEnter
+
+export const EditableSpan: React.FC<EditableSpanType> = React.memo((props) => {
     const [editMode, setEditMode] = useState(false)
     let [title, setTitle] = useState('')
 
 
     const enableEditMode = () => {
-        if (!props.isDone) {
-            setEditMode(true)
-            setTitle(props.title)
-        }
+        // if (!props.isDone) {
+        setEditMode(true)
+        setTitle(props.title)
+        // }
     }
 
 
@@ -38,4 +40,4 @@ export const EditableSpan: React.FC<EditableSpanType> = (props) => {
             autoFocus />
         : <span onDoubleClick={enableEditMode}>{props.title}</span>
 
-};
+});
