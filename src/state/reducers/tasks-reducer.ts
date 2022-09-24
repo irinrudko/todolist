@@ -21,7 +21,7 @@ export const removeTaskAC = (id: string, todolistId: string) => {
         todolistId
     } as const
 }
-export const addTaskAC = (title: string, todolistId: string,) => {
+export const addTaskAC = (title: string, todolistId: string) => {
     return {
         type: 'ADD-TASK',
         title,
