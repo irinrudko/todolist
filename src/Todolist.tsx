@@ -41,7 +41,7 @@ type TodolistType = {
     filter: FilterValuesType
 }
 
-export const Todolist = React.memo((props: TodolistType) => {
+export const Todolist: React.FC<TodolistType> = React.memo((props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
 

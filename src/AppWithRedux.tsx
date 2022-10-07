@@ -20,7 +20,7 @@ export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
-export function AppWithRedux() {
+export const AppWithRedux = () => {
     const todolists = useSelector<AppStateType, Array<TodolistType>>(state => state.todolists)
     const tasks = useSelector<AppStateType, TasksStateType>(state => state.tasks)
     const dispatch = useDispatch();
@@ -32,7 +32,6 @@ export function AppWithRedux() {
 
     return (
         <>
-
             <Header />
             <Container fixed>
                 <Grid container sx={{ padding: '20px' }}>
