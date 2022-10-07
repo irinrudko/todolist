@@ -46,7 +46,7 @@ export const AppWithRedux = () => {
                                                     key={tl.id}
                                                     title={tl.title}
                                                     filter={tl.filter}
-                                                    todolistId={tl.id}                                       
+                                                    id={tl.id}                                       
                                                 />
                                             </Paper>
                                         </Grid>

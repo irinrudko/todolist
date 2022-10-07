@@ -36,7 +36,7 @@ export type TaskType = {
 }
 
 type TodolistType = {
-    todolistId: string
+    id: string
     title: string
     filter: FilterValuesType
 }
@@ -44,7 +44,7 @@ type TodolistType = {
 export const Todolist: React.FC<TodolistType> = React.memo((props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const tasks = useSelector<AppStateType, Array<TaskType>>(state => state.tasks[props.todolistId])
+    const tasks = useSelector<AppStateType, Array<TaskType>>(state => state.tasks[props.id])
 
     ///tasks filter
     let allTodolistTasks = tasks;
@@ -74,24 +74,24 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
         dispatch(changeTodolistFilterAC(filter, todolistId))
     }, [dispatch])
 
-    const onAllClickHandler = useCallback(() => changeFilter("all", props.todolistId), [props.todolistId]);
-    const onActiveClickHandler = useCallback(() => changeFilter("active", props.todolistId), [props.todolistId]);
-    const onCompletedClickHandler = useCallback(() => changeFilter("completed", props.todolistId), [props.todolistId]);
+    const onAllClickHandler = useCallback(() => changeFilter("all", props.id), [props.id]);
+    const onActiveClickHandler = useCallback(() => changeFilter("active", props.id), [props.id]);
+    const onCompletedClickHandler = useCallback(() => changeFilter("completed", props.id), [props.id]);
 
 
     const removeTodoList = () => {
         let isConfirmed = window.confirm('Are you sure you want to delete this Todolist?');
         if (isConfirmed) {
-            dispatch(removeTodolistAC(props.todolistId))
+            dispatch(removeTodolistAC(props.id))
         } else return
     }
     const addTask = useCallback((title: string) => {
-        dispatch(addTaskAC(title, props.todolistId))
-    }, [dispatch, props.todolistId])
+        dispatch(addTaskAC(title, props.id))
+    }, [dispatch, props.id])
 
     const changeTodolistTitle = useCallback((title: string) => {
-        dispatch(changeTodolistTitleAC(props.todolistId, title))
-    }, [dispatch, props.todolistId])
+        dispatch(changeTodolistTitleAC(props.id, title))
+    }, [dispatch, props.id])
 
 
     return <div>
@@ -109,7 +109,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 
         {
             tasksForTodolist.map(t =>
-                <Task tasks={tasksForTodolist} todolistId={props.todolistId} removeTask={removeTask} changeTaskStatus={changeStatus} changeSpanValue={changeSpanValue} task={t} />)
+                <Task tasks={tasksForTodolist} todolistId={props.id} removeTask={removeTask} changeTaskStatus={changeStatus} changeSpanValue={changeSpanValue} task={t} />)
         }
 
         <div className={classes.buttons}>
