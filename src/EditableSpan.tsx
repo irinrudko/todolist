@@ -6,7 +6,8 @@ import { useState } from 'react';
 type EditableSpanType = {
     title: string
     onChange: (title: string) => void
-    isDone?: boolean //если есть необязательный параметр, то React.memo не работает
+    // isDone?: boolean 
+    //если есть необязательный параметр, то React.memo не работает
 }
 
 //TODO сделать окончание редактирования на onEnter
@@ -17,10 +18,8 @@ export const EditableSpan: React.FC<EditableSpanType> = React.memo((props) => {
 
 
     const enableEditMode = () => {
-        // if (!props.isDone) {
         setEditMode(true)
         setTitle(props.title)
-        // }
     }
 
 

@@ -35,7 +35,7 @@ export const Task: React.FC<TaskPropsType> = React.memo( (props) => {
                     sx={{
                         '& .MuiSvgIcon-root': { fontSize: 30 }
                     }} />
-                <EditableSpan title={props.task.title} onChange={changeSpan} isDone={props.task.isDone} />
+                <EditableSpan title={props.task.title} onChange={changeSpan} />
                 <IconButton onClick={onClickHandler} aria-label="delete">
                     <RemoveIcon />
                 </IconButton>

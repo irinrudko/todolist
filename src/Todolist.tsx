@@ -90,7 +90,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
     }, [dispatch, props.todolistId])
 
     const changeTodolistTitle = useCallback((title: string) => {
-        dispatch(changeTodolistTitleAC(title, props.todolistId))
+        dispatch(changeTodolistTitleAC(props.todolistId, title))
     }, [dispatch, props.todolistId])
 
 
