@@ -9,22 +9,22 @@ import { useCallback } from 'react';
 type TaskPropsType = {
     task: TaskType
     tasks: Array<TaskType>
-    todolist_id: string
-    removeTask: (taskId: string, todolist_id: string) => void
-    changeTaskStatus: (taskId: string, isDone: boolean, todolist_id: string) => void
-    changeSpanValue: (newTitle: string, taskId: string, todolist_id: string) => void
+    todolistId: string
+    removeTask: (taskId: string, todolistId: string) => void
+    changeTaskStatus: (taskId: string, isDone: boolean, todolistId: string) => void
+    changeSpanValue: (newTitle: string, taskId: string, todolistId: string) => void
 };
 
 export const Task: React.FC<TaskPropsType> = React.memo( (props) => {
     const classes = useStyles();
 
-    const onClickHandler = () => props.removeTask(props.task.id, props.todolist_id);
+    const onClickHandler = () => props.removeTask(props.task.id, props.todolistId);
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        props.changeTaskStatus(props.task.id, e.currentTarget.checked, props.todolist_id);
+        props.changeTaskStatus(props.task.id, e.currentTarget.checked, props.todolistId);
     };
     const changeSpan = useCallback((newTitle: string) => {
-        props.changeSpanValue(newTitle, props.task.id, props.todolist_id);
-    }, [props.changeSpanValue, props.task.id, props.todolist_id]);
+        props.changeSpanValue(newTitle, props.task.id, props.todolistId);
+    }, [props.changeSpanValue, props.task.id, props.todolistId]);
 
     return <>
         <div key={props.task.id} className={props.task.isDone ? "is-done" : ""}>

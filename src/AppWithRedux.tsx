@@ -52,7 +52,7 @@ export function AppWithRedux() {
                                                     title={tl.title}
                                                     tasks={tasksForTodolist}
                                                     filter={tl.filter}
-                                                    todolist_id={tl.id}                                       
+                                                    todolistId={tl.id}                                       
                                                 />
                                             </Paper>
                                         </Grid>
