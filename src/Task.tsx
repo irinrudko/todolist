@@ -15,7 +15,7 @@ type TaskPropsType = {
     changeSpanValue: (newTitle: string, taskId: string, todolist_id: string) => void
 };
 
-export const Task: React.FC<TaskPropsType> = (props) => {
+export const Task: React.FC<TaskPropsType> = React.memo( (props) => {
     const classes = useStyles();
 
     const onClickHandler = () => props.removeTask(props.task.id, props.todolist_id);
@@ -43,4 +43,4 @@ export const Task: React.FC<TaskPropsType> = (props) => {
         </div>
     </>
 
-};
+});
