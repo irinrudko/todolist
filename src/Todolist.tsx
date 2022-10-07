@@ -6,10 +6,11 @@ import { AddItemForm } from './AddItemForm';
 import { EditableSpan } from './EditableSpan';
 import ClearIcon from '@mui/icons-material/Clear';
 import { Task } from './Task';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC } from './state/reducers/todolist-reducer';
 import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC } from './state/reducers/tasks-reducer';
 import { FilterValuesType } from './AppWithRedux';
+import { AppStateType } from './state/store';
 
 
 export const useStyles = makeStyles({
@@ -37,13 +38,25 @@ export type TaskType = {
 type TodolistType = {
     todolistId: string
     title: string
-    tasks: Array<TaskType>
     filter: FilterValuesType
 }
 
 export const Todolist: React.FC<TodolistType> = React.memo((props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const tasks = useSelector<AppStateType, Array<TaskType>>(state => state.tasks[props.todolistId])
+
+    ///tasks filter
+    let allTodolistTasks = tasks;
+    let tasksForTodolist = allTodolistTasks;
+
+    if (props.filter === "active") {
+        tasksForTodolist = allTodolistTasks.filter(t => t.isDone === false);
+    }
+    if (props.filter === "completed") {
+        tasksForTodolist = allTodolistTasks.filter(t => t.isDone === true);
+    }
+    ///tasks filter
 
 
     const removeTask = useCallback((id: string, todolistId: string) => {
@@ -81,19 +94,6 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
     }, [dispatch, props.todolistId])
 
 
-    ///tasks filter
-    let tasksForTodolist = props.tasks;
-
-    if (props.filter === "active") {
-        tasksForTodolist = props.tasks.filter(t => t.isDone === false);
-    }
-    if (props.filter === "completed") {
-        tasksForTodolist = props.tasks.filter(t => t.isDone === true);
-    }
-    ///tasks filter
-
-
-
     return <div>
         <SvgIcon onClick={removeTodoList} fontSize='large' >
             <ClearIcon></ClearIcon>
@@ -108,8 +108,8 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
         <AddItemForm addItem={addTask} label="Add your item" />
 
         {
-            props.tasks.map(t =>
-                <Task tasks={props.tasks} todolistId={props.todolistId} removeTask={removeTask} changeTaskStatus={changeStatus} changeSpanValue={changeSpanValue} task={t} />)
+            tasksForTodolist.map(t =>
+                <Task tasks={tasksForTodolist} todolistId={props.todolistId} removeTask={removeTask} changeTaskStatus={changeStatus} changeSpanValue={changeSpanValue} task={t} />)
         }
 
         <div className={classes.buttons}>

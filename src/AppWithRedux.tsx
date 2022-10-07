@@ -22,7 +22,6 @@ export type TasksStateType = {
 
 export const AppWithRedux = () => {
     const todolists = useSelector<AppStateType, Array<TodolistType>>(state => state.todolists)
-    const tasks = useSelector<AppStateType, TasksStateType>(state => state.tasks)
     const dispatch = useDispatch();
 
 
@@ -39,9 +38,6 @@ export const AppWithRedux = () => {
 
                         {
                             todolists.map(tl => {
-                                let allTasks = tasks[tl.id];
-                                let tasksForTodolist = allTasks
-
                                 return (
                                     <>
                                         <Grid item>
@@ -49,7 +45,6 @@ export const AppWithRedux = () => {
                                                 <Todolist
                                                     key={tl.id}
                                                     title={tl.title}
-                                                    tasks={tasksForTodolist}
                                                     filter={tl.filter}
                                                     todolistId={tl.id}                                       
                                                 />
