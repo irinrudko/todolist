@@ -7,7 +7,7 @@ it('should remove the correct task', () => {
     let taskId = v1();
     const startState: TasksStateType = {
         [todolistId1]: [
-            { id: taskId, title: "HTML&CSS", isDone: true },
+            { id: '1', title: "HTML&CSS", isDone: true },
             { id: '2', title: "JS", isDone: true },
             { id: '3', title: "Jest", isDone: true },
         ],
