@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { Button, SvgIcon, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { AddItemForm } from './AddItemForm';
 import { EditableSpan } from './EditableSpan';
 import ClearIcon from '@mui/icons-material/Clear';
 import { Task } from './Task';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC } from './state/reducers/todolist-reducer';
-import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC } from './state/reducers/tasks-reducer';
+import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, fetchTasksTC, removeTaskAC, removeTaskTC } from './state/reducers/tasks-reducer';
 import { FilterValuesType } from './AppWithRedux';
 import { AppStateType } from './state/store';
+
 
 
 export const useStyles = makeStyles({
@@ -42,6 +43,11 @@ type TodolistType = {
 }
 
 export const Todolist: React.FC<TodolistType> = React.memo((props) => {
+        
+    useEffect(() => {
+        dispatch(fetchTasksTC(props.id))
+    }, [])
+   
     const classes = useStyles();
     const dispatch = useDispatch();
     const tasks = useSelector<AppStateType, Array<TaskType>>(state => state.tasks[props.id])
@@ -60,7 +66,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 
 
     const removeTask = useCallback((id: string, todolistId: string) => {
-        dispatch(removeTaskAC(id, todolistId))
+        dispatch(removeTaskTC(id, todolistId))
     }, [dispatch])
     const changeStatus = useCallback((taskId: string, isDone: boolean, todolistId: string) => {
         dispatch(changeTaskStatusAC(taskId, isDone, todolistId))
