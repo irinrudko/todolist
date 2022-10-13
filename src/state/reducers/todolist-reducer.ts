@@ -1,16 +1,24 @@
 import { Dispatch } from "redux";
 import { v1 } from "uuid";
 import { todolistsAPI } from "../../API/api";
-import { FilterValuesType, TodolistType } from "../../AppWithRedux";
+import { FilterValuesType} from "../../AppWithRedux";
 import { addTodolistAC } from "../reducers/todolists-tasks-reducer";
 
 export const todolistId1 = v1();
 export const todolistId2 = v1();
 
-const initialState: Array<TodolistType> = [
-    // { id: todolistId1, title: "What to learn", filter: "all" },
-    // { id: todolistId2, title: "What to buy", filter: "all" }
-]
+
+type TodolistResponseType = {
+    id: string
+    title: string
+    order: number
+    addedDate: string
+}
+type TodolistType = TodolistResponseType & {
+    filter: FilterValuesType
+}
+
+const initialState: Array<TodolistType> = []
 
 export const removeTodolistAC = (id: string) => {
     return {
@@ -53,7 +61,9 @@ export const todolistsReducer = (state: Array<TodolistType> = initialState, acti
                 {
                     id: action.todolistId,
                     title: action.title,
-                    filter: 'all'
+                    filter: 'all',
+                    addedDate: '',
+                    order: 0
                 }]
         }
         case 'CHANGE-TODOLIST-TITLE': {
@@ -71,8 +81,6 @@ export const todolistsReducer = (state: Array<TodolistType> = initialState, acti
             return [...state]
         }
         case 'SET-TODOLISTS': {
-            debugger
-
             return action.todolists.map(tl => ({
                 ...tl,
                 filter: 'all'
