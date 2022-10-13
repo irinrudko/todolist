@@ -22,16 +22,16 @@ const callbackProps = {
 
 const Template: ComponentStory<typeof Task> = (args) => <Task {...args} />;
     
-export const TaskIsDone = Template.bind({});
-TaskIsDone.args = {
+export const TaskIsCompleted = Template.bind({});
+TaskIsCompleted.args = {
     ...callbackProps,
-    task: {id: '5', isDone: true, title: 'isDone'},
+    task: { id: '5', title: "isCompleted", completed: true, addedDate: '', deadline: '', description: '', order: 0, priority: '', startDate: '', status: '', todoListId: "todolistId1"  },
     todolistId: 'todolist1',
 }
-export const TaskIsNotDone = Template.bind({});
-TaskIsNotDone.args = {
+export const TaskIsNotCompleted = Template.bind({});
+TaskIsNotCompleted.args = {
     ...callbackProps,
-    task: {id: '6', isDone: false, title: 'isNotDone'},
+    task: { id: '6', title: "isNotCompleted", completed: false, addedDate: '', deadline: '', description: '', order: 0, priority: '', startDate: '', status: '', todoListId: "todolistId1"  },
     todolistId: 'todolist1'
 }
 

@@ -5,23 +5,23 @@ import { tasksReducer } from "../../state/reducers/tasks-reducer"
 import { todolistsReducer } from "../../state/reducers/todolist-reducer"
 import { AppStateType } from "../../state/store"
 
-const initialStore = {
+const initialStore: AppStateType = {
     todolists:
     [
-        { id: "todolistId1", title: "What to learn", filter: "all" },
-        { id: "todolistId2", title: "What to buy", filter: "all" }
+        { id: "todolistId1", title: "What to learn", filter: "all", addedDate: '', order: 0  },
+        { id: "todolistId2", title: "What to buy", filter: "all", addedDate: '', order: 1 }
     ],
     tasks: {
         ["todolistId1"]: [
-            { id: '1', title: "HTML&CSS", isDone: true },
-            { id: '2', title: "JS", isDone: true },
-            { id: '3', title: "Jest", isDone: true },
-            { id: '4', title: "Storybook", isDone: false },
+            { id: '1', title: "HTML&CSS", completed: true, addedDate: '', deadline: '', description: '', order: 0, priority: '', startDate: '', status: '', todoListId: "todolistId1"  },
+            { id: '2', title: "JS", completed: false, addedDate: '', deadline: '', description: '', order: 1, priority: '', startDate: '', status: '', todoListId: "todolistId1"  },
+            { id: '3', title: "React", completed: true, addedDate: '', deadline: '', description: '', order: 2, priority: '', startDate: '', status: '', todoListId: "todolistId1"  },
+            { id: '4', title: "Postman", completed: false, addedDate: '', deadline: '', description: '', order: 3, priority: '', startDate: '', status: '', todoListId: "todolistId1"  }
         ],
         ["todolistId2"]: [
-            { id: '1', title: "Water", isDone: true },
-            { id: '2', title: "React Book", isDone: true },
-            { id: '3', title: "Clean code book", isDone: false },
+            { id: '1', title: "Water", completed: true, addedDate: '', deadline: '', description: '', order: 0, priority: '', startDate: '', status: '', todoListId: "todolistId2"  },
+            { id: '2', title: "Clean code book", completed: true, addedDate: '', deadline: '', description: '', order: 1, priority: '', startDate: '', status: '', todoListId: "todolistId2"  },
+            { id: '3', title: "Apples", completed: false, addedDate: '', deadline: '', description: '', order: 2, priority: '', startDate: '', status: '', todoListId: "todolistId2"  }
         ]
     }
 }
