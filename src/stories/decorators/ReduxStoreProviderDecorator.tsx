@@ -13,15 +13,15 @@ const initialStore: AppStateType = {
     ],
     tasks: {
         ["todolistId1"]: [
-            { id: '1', title: "HTML&CSS", completed: true, addedDate: '', deadline: '', description: '', order: 0, priority: '', startDate: '', status: '', todoListId: "todolistId1"  },
-            { id: '2', title: "JS", completed: false, addedDate: '', deadline: '', description: '', order: 1, priority: '', startDate: '', status: '', todoListId: "todolistId1"  },
-            { id: '3', title: "React", completed: true, addedDate: '', deadline: '', description: '', order: 2, priority: '', startDate: '', status: '', todoListId: "todolistId1"  },
-            { id: '4', title: "Postman", completed: false, addedDate: '', deadline: '', description: '', order: 3, priority: '', startDate: '', status: '', todoListId: "todolistId1"  }
+            { id: '1', title: "HTML&CSS", completed: true, addedDate: '', deadline: '', description: '', order: 0, priority: 1, startDate: '', status: 1, todoListId: "todolistId1"  },
+            { id: '2', title: "JS", completed: false, addedDate: '', deadline: '', description: '', order: 1, priority: 5, startDate: '', status: 2, todoListId: "todolistId1"  },
+            { id: '3', title: "React", completed: true, addedDate: '', deadline: '', description: '', order: 2, priority: 5, startDate: '', status: 3, todoListId: "todolistId1"  },
+            { id: '4', title: "Postman", completed: false, addedDate: '', deadline: '', description: '', order: 3, priority: 5, startDate: '', status: 1, todoListId: "todolistId1"  }
         ],
         ["todolistId2"]: [
-            { id: '1', title: "Water", completed: true, addedDate: '', deadline: '', description: '', order: 0, priority: '', startDate: '', status: '', todoListId: "todolistId2"  },
-            { id: '2', title: "Clean code book", completed: true, addedDate: '', deadline: '', description: '', order: 1, priority: '', startDate: '', status: '', todoListId: "todolistId2"  },
-            { id: '3', title: "Apples", completed: false, addedDate: '', deadline: '', description: '', order: 2, priority: '', startDate: '', status: '', todoListId: "todolistId2"  }
+            { id: '1', title: "Water", completed: true, addedDate: '', deadline: '', description: '', order: 0, priority: 3, startDate: '', status: 1, todoListId: "todolistId2"  },
+            { id: '2', title: "Clean code book", completed: true, addedDate: '', deadline: '', description: '', order: 1, priority: 2, startDate: '', status: 2, todoListId: "todolistId2"  },
+            { id: '3', title: "Apples", completed: false, addedDate: '', deadline: '', description: '', order: 2, priority: 3, startDate: '', status: 1, todoListId: "todolistId2"  }
         ]
     }
 }
