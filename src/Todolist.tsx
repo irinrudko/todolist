@@ -8,11 +8,9 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { Task } from './Task';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC } from './state/reducers/todolist-reducer';
-import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, fetchTasksTC, removeTaskAC, removeTaskTC } from './state/reducers/tasks-reducer';
-import { FilterValuesType } from './AppWithRedux';
+import { addTaskTC, changeTaskStatusAC, changeTaskTitleAC, fetchTasksTC, removeTaskTC, TaskType } from './state/reducers/tasks-reducer';
+import { FilterValuesType, TodolistType } from './AppWithRedux';
 import { AppStateType } from './state/store';
-
-
 
 export const useStyles = makeStyles({
     checkbox: {
@@ -30,18 +28,6 @@ export const useStyles = makeStyles({
     },
 });
 
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}
-
-type TodolistType = {
-    id: string
-    title: string
-    filter: FilterValuesType
-}
-
 export const Todolist: React.FC<TodolistType> = React.memo((props) => {
         
     useEffect(() => {
@@ -57,10 +43,10 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
     let tasksForTodolist = allTodolistTasks;
 
     if (props.filter === "active") {
-        tasksForTodolist = allTodolistTasks.filter(t => t.isDone === false);
+        tasksForTodolist = allTodolistTasks.filter(t => t.completed === false);
     }
     if (props.filter === "completed") {
-        tasksForTodolist = allTodolistTasks.filter(t => t.isDone === true);
+        tasksForTodolist = allTodolistTasks.filter(t => t.completed === true);
     }
     ///tasks filter
 
@@ -68,6 +54,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
     const removeTask = useCallback((id: string, todolistId: string) => {
         dispatch(removeTaskTC(id, todolistId))
     }, [dispatch])
+
     const changeStatus = useCallback((taskId: string, isDone: boolean, todolistId: string) => {
         dispatch(changeTaskStatusAC(taskId, isDone, todolistId))
     }, [dispatch])
@@ -92,7 +79,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
         } else return
     }
     const addTask = useCallback((title: string) => {
-        dispatch(addTaskAC(title, props.id))
+        dispatch(addTaskTC(title, props.id))
     }, [dispatch, props.id])
 
     const changeTodolistTitle = useCallback((title: string) => {
