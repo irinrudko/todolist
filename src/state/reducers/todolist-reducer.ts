@@ -50,15 +50,6 @@ export const todolistsReducer = (state: Array<TodolistType> = initialState, acti
     }
 }
 
-export const fetchTodoliststTC = () => {
-    return (dispatch: Dispatch) => {
-        todolistsAPI.getTodolists()
-            .then((todolists)=> {
-                    dispatch(setTodolistsAC(todolists))
-                })
-    }
-}
-
 
 export const removeTodolistAC = (id: string) => {
     return {
@@ -85,6 +76,15 @@ export const setTodolistsAC = (todolists: Array<TodolistType>)  => {
         type: 'SET-TODOLISTS',
         todolists       
     } as const
+}
+
+export const fetchTodoliststTC = () => {
+    return (dispatch: Dispatch) => {
+        todolistsAPI.getTodolists()
+            .then((todolists)=> {
+                    dispatch(setTodolistsAC(todolists))
+                })
+    }
 }
 
 
