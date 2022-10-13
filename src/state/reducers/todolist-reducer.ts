@@ -1,11 +1,7 @@
 import { Dispatch } from "redux";
-import { v1 } from "uuid";
 import { todolistsAPI } from "../../API/api";
 import { FilterValuesType} from "../../AppWithRedux";
 import { addTodolistAC } from "../reducers/todolists-tasks-reducer";
-
-export const todolistId1 = v1();
-export const todolistId2 = v1();
 
 const initialState: Array<TodolistType> = []
 
@@ -86,7 +82,6 @@ export const fetchTodoliststTC = () => {
                 })
     }
 }
-
 export const removeTodolistTC = (id: string) => {
     return (dispatch: Dispatch) => {
         todolistsAPI.deleteTodolist(id)
@@ -95,13 +90,20 @@ export const removeTodolistTC = (id: string) => {
             })
     }
 }
-
 export const addTodolistTC = (title: string) => {
     return (dispatch: Dispatch) => {
         todolistsAPI.createTodolist(title)
             .then((res) => {
                 let todolist = res.data.item
                 dispatch(addTodolistAC(todolist))
+            })
+    }
+}
+export const changeTodolistTitleTH = (id: string, title: string) => {
+    return (dispatch: Dispatch) => {
+        todolistsAPI.updateTodolist(id, title)
+            .then(() => {
+                dispatch(changeTodolistTitleAC(id, title))
             })
     }
 }

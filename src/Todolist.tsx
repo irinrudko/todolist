@@ -7,7 +7,7 @@ import { EditableSpan } from './EditableSpan';
 import ClearIcon from '@mui/icons-material/Clear';
 import { Task } from './Task';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistTC, TodolistType } from './state/reducers/todolist-reducer';
+import { changeTodolistFilterAC, changeTodolistTitleTH, removeTodolistTC, TodolistType } from './state/reducers/todolist-reducer';
 import { addTaskTC, fetchTasksTC, removeTaskTC, TaskType, updateTaskTC } from './state/reducers/tasks-reducer';
 import { FilterValuesType } from './AppWithRedux';
 import { AppStateType } from './state/store';
@@ -62,7 +62,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
         } else return
     }
     const changeTodolistTitle = useCallback((title: string) => {
-        dispatch(changeTodolistTitleAC(props.id, title))
+        dispatch(changeTodolistTitleTH(props.id, title))
     }, [dispatch, props.id])
     const changeFilter = useCallback((filter: FilterValuesType, todolistId: string) => {
         dispatch(changeTodolistFilterAC(filter, todolistId))
