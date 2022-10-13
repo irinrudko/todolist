@@ -3,8 +3,9 @@ import { Checkbox, IconButton } from '@mui/material';
 import { ChangeEvent } from 'react';
 import { EditableSpan } from './EditableSpan';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { TaskType, useStyles } from './Todolist';
+import { useStyles } from './Todolist';
 import { useCallback } from 'react';
+import { TaskType } from './state/reducers/tasks-reducer';
 
 type TaskPropsType = {
     task: TaskType
@@ -27,11 +28,11 @@ export const Task: React.FC<TaskPropsType> = React.memo( (props) => {
     }, [props.changeSpanValue, props.task.id, props.todolistId]);
 
     return <>
-        <div key={props.task.id} className={props.task.isDone ? "is-done" : ""}>
+        <div key={props.task.id} className={props.task.completed ? "is-done" : ""}>
             <div>
                 <Checkbox className={classes.checkbox}
                     onChange={onChangeHandler}
-                    checked={props.task.isDone}
+                    checked={props.task.completed}
                     sx={{
                         '& .MuiSvgIcon-root': { fontSize: 30 }
                     }} />
