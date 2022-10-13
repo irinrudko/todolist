@@ -1,7 +1,11 @@
 import { v1 } from "uuid";
 import { TasksStateType } from "../../AppWithRedux";
-import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer } from "./tasks-reducer";
+import { addTaskAC, removeTaskAC, tasksReducer } from "./tasks-reducer";
 import { todolistId1,todolistId2} from "./todolist-reducer";
+
+//TODO: 
+//add tests for new reducers
+//fix startState with beforeEach (lesson #14)
 
 it('should remove the correct task', () => {
     let taskId = v1();

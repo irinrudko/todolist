@@ -30,7 +30,7 @@ export const useStyles = makeStyles({
 });
 
 export const Todolist: React.FC<TodolistType> = React.memo((props) => {
-        
+
     useEffect(() => {
         dispatch(fetchTasksTC(props.id))
     }, [])
@@ -50,23 +50,6 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
         tasksForTodolist = allTodolistTasks.filter(t => t.completed === true);
     }
     ///tasks filter
-
-
-    const removeTask = useCallback((id: string, todolistId: string) => {
-        dispatch(removeTaskTC(id, todolistId))
-    }, [dispatch])
-
-    const changeTaskStatus = useCallback((id: string, status: TaskStatuses, todolistId: string) => {
-        dispatch(updateTaskTC(id, {status}, todolistId))
-    }, [dispatch])
-    const changeSpanValue = useCallback((title: string, taskId: string, todolistId: string) => {
-        dispatch(updateTaskTC(taskId, {title}, todolistId))
-    }, [dispatch])
-    
-    const changeFilter = useCallback((filter: FilterValuesType, todolistId: string) => {
-        dispatch(changeTodolistFilterAC(filter, todolistId))
-    }, [dispatch])
-
     const onAllClickHandler = useCallback(() => changeFilter("all", props.id), [props.id]);
     const onActiveClickHandler = useCallback(() => changeFilter("active", props.id), [props.id]);
     const onCompletedClickHandler = useCallback(() => changeFilter("completed", props.id), [props.id]);
@@ -78,13 +61,26 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
             dispatch(removeTodolistTC(props.id))
         } else return
     }
-    const addTask = useCallback((title: string) => {
-        dispatch(addTaskTC(title, props.id))
-    }, [dispatch, props.id])
-
     const changeTodolistTitle = useCallback((title: string) => {
         dispatch(changeTodolistTitleAC(props.id, title))
     }, [dispatch, props.id])
+    const changeFilter = useCallback((filter: FilterValuesType, todolistId: string) => {
+        dispatch(changeTodolistFilterAC(filter, todolistId))
+    }, [dispatch])
+
+
+    const addTask = useCallback((title: string) => {
+        dispatch(addTaskTC(title, props.id))
+    }, [dispatch, props.id])
+    const removeTask = useCallback((id: string, todolistId: string) => {
+        dispatch(removeTaskTC(id, todolistId))
+    }, [dispatch])
+    const changeTaskStatus = useCallback((id: string, status: TaskStatuses, todolistId: string) => {
+        dispatch(updateTaskTC(id, {status}, todolistId))
+    }, [dispatch])
+    const changeSpanValue = useCallback((title: string, taskId: string, todolistId: string) => {
+        dispatch(updateTaskTC(taskId, {title}, todolistId))
+    }, [dispatch])
 
 
     return <div>
