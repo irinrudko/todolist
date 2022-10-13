@@ -98,7 +98,6 @@ export const fetchTasksTC = (todolistId: string) => {
     return (dispatch: Dispatch) => {
         tasksAPI.getTasks(todolistId)
             .then((res) => {
-                debugger
                 let tasks = res.items
                 dispatch(setTasksAC(tasks, todolistId))
             })
