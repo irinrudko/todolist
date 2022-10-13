@@ -4,11 +4,8 @@ import AddIcon from '@mui/icons-material/Add';
 import { AddItemForm } from './AddItemForm';
 import { makeStyles } from '@mui/styles';
 import { useCallback } from 'react';
-
-type NewTodolistType = {
-    addTodolist: (title: string) => void
-}
-
+import { useDispatch } from 'react-redux';
+import { addTodolistTC } from './state/reducers/todolist-reducer';
 
 const useStyles = makeStyles({
     addButton: {
@@ -35,7 +32,8 @@ const style = {
     p: 1,
 };
 
-export const AddNewTodolist: React.FC<NewTodolistType> = React.memo((props) => {
+export const AddNewTodolist = React.memo((props) => {
+    const dispatch = useDispatch();
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
@@ -44,11 +42,10 @@ export const AddNewTodolist: React.FC<NewTodolistType> = React.memo((props) => {
     };
     const handleClose = () => setOpen(false);
 
-
     const addTodolist = useCallback((title: string) => {
-        props.addTodolist(title);
+        dispatch(addTodolistTC(title))
         handleClose()
-    }, [props.addTodolist])
+    }, [dispatch])
 
     return (
         <>

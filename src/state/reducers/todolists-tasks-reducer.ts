@@ -1,10 +1,9 @@
-import { v1 } from "uuid"
+import { TodolistType } from "./todolist-reducer"
 
-export const addTodolistAC = (title: string) => {
+export const addTodolistAC = (todolist: TodolistType)  => {
     return {
         type: 'ADD-TODOLIST',
-        title,
-        todolistId: v1()
+        todolist
     } as const
 }
 

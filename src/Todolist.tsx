@@ -7,9 +7,9 @@ import { EditableSpan } from './EditableSpan';
 import ClearIcon from '@mui/icons-material/Clear';
 import { Task } from './Task';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC } from './state/reducers/todolist-reducer';
+import { changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistTC, TodolistType } from './state/reducers/todolist-reducer';
 import { addTaskTC, fetchTasksTC, removeTaskTC, TaskType, updateTaskTC } from './state/reducers/tasks-reducer';
-import { FilterValuesType, TodolistType } from './AppWithRedux';
+import { FilterValuesType } from './AppWithRedux';
 import { AppStateType } from './state/store';
 import { TaskStatuses } from './API/api';
 
@@ -56,16 +56,12 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
         dispatch(removeTaskTC(id, todolistId))
     }, [dispatch])
 
-
     const changeTaskStatus = useCallback((id: string, status: TaskStatuses, todolistId: string) => {
         dispatch(updateTaskTC(id, {status}, todolistId))
     }, [dispatch])
     const changeSpanValue = useCallback((title: string, taskId: string, todolistId: string) => {
         dispatch(updateTaskTC(taskId, {title}, todolistId))
     }, [dispatch])
-
-
-
     
     const changeFilter = useCallback((filter: FilterValuesType, todolistId: string) => {
         dispatch(changeTodolistFilterAC(filter, todolistId))
@@ -79,7 +75,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
     const removeTodoList = () => {
         let isConfirmed = window.confirm('Are you sure you want to delete this Todolist?');
         if (isConfirmed) {
-            dispatch(removeTodolistAC(props.id))
+            dispatch(removeTodolistTC(props.id))
         } else return
     }
     const addTask = useCallback((title: string) => {

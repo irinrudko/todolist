@@ -19,11 +19,11 @@ export const todolistsReducer = (state: Array<TodolistType> = initialState, acti
             return [
                 ...state,
                 {
-                    id: action.todolistId,
-                    title: action.title,
+                    id: action.todolist.id,
+                    title: action.todolist.title,
                     filter: 'all',
-                    addedDate: '',
-                    order: 0
+                    addedDate: action.todolist.addedDate,
+                    order: action.todolist.order
                 }]
         }
         case 'CHANGE-TODOLIST-TITLE': {
@@ -50,7 +50,12 @@ export const todolistsReducer = (state: Array<TodolistType> = initialState, acti
     }
 }
 
-
+export const setTodolistsAC = (todolists: Array<TodolistType>)  => {
+    return {
+        type: 'SET-TODOLISTS',
+        todolists       
+    } as const
+}
 export const removeTodolistAC = (id: string) => {
     return {
         type: 'REMOVE-TODOLIST',
@@ -71,12 +76,7 @@ export const changeTodolistFilterAC = (filter: FilterValuesType, id: string) => 
         id
     } as const
 }
-export const setTodolistsAC = (todolists: Array<TodolistType>)  => {
-    return {
-        type: 'SET-TODOLISTS',
-        todolists       
-    } as const
-}
+
 
 export const fetchTodoliststTC = () => {
     return (dispatch: Dispatch) => {
@@ -87,15 +87,34 @@ export const fetchTodoliststTC = () => {
     }
 }
 
+export const removeTodolistTC = (id: string) => {
+    return (dispatch: Dispatch) => {
+        todolistsAPI.deleteTodolist(id)
+            .then(() => {
+                dispatch(removeTodolistAC(id))
+            })
+    }
+}
+
+export const addTodolistTC = (title: string) => {
+    return (dispatch: Dispatch) => {
+        todolistsAPI.createTodolist(title)
+            .then((res) => {
+                let todolist = res.data.item
+                dispatch(addTodolistAC(todolist))
+            })
+    }
+}
+
 
 
 type TodolistResponseType = {
     id: string
     title: string
-    order: number
-    addedDate: string
+    order?: number
+    addedDate?: string
 }
-type TodolistType = TodolistResponseType & {
+export type TodolistType = TodolistResponseType & {
     filter: FilterValuesType
 }
 export type TodolistsActionTypes = 

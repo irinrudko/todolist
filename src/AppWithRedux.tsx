@@ -3,21 +3,16 @@ import React, { useEffect } from 'react';
 import { AddNewTodolist } from './AddNewTodolist';
 import { Header } from './Header';
 import { Todolist } from './Todolist';
-import { addTodolistAC } from './state/reducers/todolists-tasks-reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from './state/store';
-import { useCallback } from 'react';
-import {fetchTodoliststTC } from './state/reducers/todolist-reducer';
+import {fetchTodoliststTC, TodolistType } from './state/reducers/todolist-reducer';
 import { TaskType } from './state/reducers/tasks-reducer';
+
+//TODO
+//refactor project folders according to React guidline (lesson 15 folder)
 
 
 export type FilterValuesType = "all" | "active" | "completed";
-export type TodolistType = {
-    id: string
-    title: string
-    filter: FilterValuesType
-}
-
 export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
@@ -30,11 +25,6 @@ export const AppWithRedux = () => {
 
     const todolists = useSelector<AppStateType, Array<TodolistType>>(state => state.todolists)
     const dispatch = useDispatch();
-
-    const addTodolist = useCallback((title: string) => {
-        dispatch(addTodolistAC(title))
-    }, [dispatch])
-
 
     return (
         <>
@@ -53,7 +43,7 @@ export const AppWithRedux = () => {
                                                     key={tl.id}
                                                     title={tl.title}
                                                     filter={tl.filter}
-                                                    id={tl.id}                                       
+                                                    id={tl.id}                                 
                                                 />
                                             </Paper>
                                         </Grid>
@@ -63,7 +53,7 @@ export const AppWithRedux = () => {
                         }
                     </Grid>
                 </Grid>
-                <AddNewTodolist addTodolist={addTodolist} />
+                <AddNewTodolist />
             </Container>
         </>
     );
