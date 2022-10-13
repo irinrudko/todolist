@@ -8,9 +8,10 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { Task } from './Task';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC } from './state/reducers/todolist-reducer';
-import { addTaskTC, changeTaskStatusAC, changeTaskTitleAC, fetchTasksTC, removeTaskTC, TaskType } from './state/reducers/tasks-reducer';
+import { addTaskTC, fetchTasksTC, removeTaskTC, TaskType, updateTaskTC } from './state/reducers/tasks-reducer';
 import { FilterValuesType, TodolistType } from './AppWithRedux';
 import { AppStateType } from './state/store';
+import { TaskStatuses } from './API/api';
 
 export const useStyles = makeStyles({
     checkbox: {
@@ -55,12 +56,15 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
         dispatch(removeTaskTC(id, todolistId))
     }, [dispatch])
 
-    const changeStatus = useCallback((taskId: string, isDone: boolean, todolistId: string) => {
-        dispatch(changeTaskStatusAC(taskId, isDone, todolistId))
+
+    const changeTaskStatus = useCallback((id: string, status: TaskStatuses, todolistId: string) => {
+        dispatch(updateTaskTC(id, {status}, todolistId))
     }, [dispatch])
-    const changeSpanValue = useCallback((newTitle: string, taskId: string, todolistId: string) => {
-        dispatch(changeTaskTitleAC(taskId, newTitle, todolistId))
+    const changeSpanValue = useCallback((title: string, taskId: string, todolistId: string) => {
+        dispatch(updateTaskTC(taskId, {title}, todolistId))
     }, [dispatch])
+
+
 
     
     const changeFilter = useCallback((filter: FilterValuesType, todolistId: string) => {
@@ -102,7 +106,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 
         {
             tasksForTodolist.map(t =>
-                <Task tasks={tasksForTodolist} todolistId={props.id} removeTask={removeTask} changeTaskStatus={changeStatus} changeSpanValue={changeSpanValue} task={t} key={t.id} />)
+                <Task tasks={tasksForTodolist} todolistId={props.id} removeTask={removeTask} changeTaskStatus={changeTaskStatus} changeSpanValue={changeSpanValue} task={t} key={t.id} />)
         }
 
         <div className={classes.buttons}>
