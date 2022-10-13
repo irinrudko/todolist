@@ -44,10 +44,10 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
     let tasksForTodolist = allTodolistTasks;
 
     if (props.filter === "active") {
-        tasksForTodolist = allTodolistTasks.filter(t => t.completed === false);
+        tasksForTodolist = allTodolistTasks.filter(t => t.status === TaskStatuses.New);
     }
     if (props.filter === "completed") {
-        tasksForTodolist = allTodolistTasks.filter(t => t.completed === true);
+        tasksForTodolist = allTodolistTasks.filter(t => t.status === TaskStatuses.Completed);
     }
     ///tasks filter
     const onAllClickHandler = useCallback(() => changeFilter("all", props.id), [props.id]);
@@ -65,6 +65,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
         dispatch(changeTodolistTitleTH(props.id, title))
     }, [dispatch, props.id])
     const changeFilter = useCallback((filter: FilterValuesType, todolistId: string) => {
+        debugger
         dispatch(changeTodolistFilterAC(filter, todolistId))
     }, [dispatch])
 
