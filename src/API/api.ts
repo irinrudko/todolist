@@ -58,5 +58,4 @@ export const tasksAPI = {
 	deleteTask(todolistId: string, id: string) {
 		return instance.delete(`todo-lists/${todolistId}/tasks/${id}`).then((response) => response.data)
 	},
-	//check the route
 }
