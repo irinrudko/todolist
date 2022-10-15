@@ -1,9 +1,8 @@
-import { TodolistType } from "./todolist-reducer"
+import { TodolistType } from './todolist-reducer'
 
-export const addTodolistAC = (todolist: TodolistType)  => {
-    return {
-        type: 'ADD-TODOLIST',
-        todolist
-    } as const
+export const addTodolistAC = (todolist: TodolistType) => {
+	return {
+		type: 'ADD-TODOLIST',
+		todolist,
+	} as const
 }
-
