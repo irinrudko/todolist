@@ -1,89 +1,91 @@
 {
-  "name": "it-incubator-todolist-ts",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1",
-    "@mui/icons-material": "^5.4.2",
-    "@mui/material": "^5.4.3",
-    "@mui/styles": "^5.4.2",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "@types/react-redux": "^7.1.23",
-    "@types/uuid": "^7.0.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.6",
-    "react-scripts": "3.4.1",
-    "redux": "^4.1.2",
-    "redux-thunk": "^2.4.1",
-    "typescript": "^3.7.2",
-    "uuid": "^8.0.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
-    "jest:integration": "jest -c integration/jest.config.js",
-    "test:integration": "start-server-and-test storybook http-get://localhost:9009 jest:integration"
-  },
-  "eslintConfig": {
-    "extends": "react-app",
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
+    "name": "it-incubator-todolist-ts",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@emotion/react": "^11.8.1",
+        "@emotion/styled": "^11.8.1",
+        "@mui/icons-material": "^5.4.2",
+        "@mui/material": "^5.4.3",
+        "@mui/styles": "^5.4.2",
+        "@testing-library/jest-dom": "^4.2.4",
+        "@testing-library/react": "^9.3.2",
+        "@testing-library/user-event": "^7.1.2",
+        "@types/jest": "^24.0.0",
+        "@types/node": "^12.0.0",
+        "@types/react": "^16.9.0",
+        "@types/react-dom": "^16.9.0",
+        "@types/react-redux": "^7.1.23",
+        "@types/uuid": "^7.0.3",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-redux": "^7.2.6",
+        "react-scripts": "3.4.1",
+        "redux": "^4.1.2",
+        "redux-thunk": "^2.4.1",
+        "typescript": "^3.7.2",
+        "uuid": "^8.0.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "storybook": "start-storybook -p 9009 -s public",
+        "build-storybook": "build-storybook -s public",
+        "jest:integration": "jest -c integration/jest.config.js",
+        "test:integration": "start-server-and-test storybook http-get://localhost:9009 jest:integration",
+        "format": "yarn prettier --write ."
+    },
+    "eslintConfig": {
+        "extends": "react-app",
+        "overrides": [
+            {
+                "files": [
+                    "**/*.stories.*"
+                ],
+                "rules": {
+                    "import/no-anonymous-default-export": "off"
+                }
+            }
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
         ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2016",
+        "jsx": "preserve"
+    },
+    "exclude": [
+        "node_modules",
+        "**/node_modules/*"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2016",
-    "jsx": "preserve"
-  },
-  "exclude": [
-    "node_modules",
-    "**/node_modules/*"
-  ],
-  "devDependencies": {
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/builder-webpack4": "^6.5.12",
-    "@storybook/manager-webpack4": "^6.5.12",
-    "@storybook/node-logger": "^6.5.12",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.5.12",
-    "@storybook/testing-library": "^0.0.13",
-    "jest-image-snapshot": "4.0.2",
-    "jest-puppeteer": "4.4.0",
-    "puppeteer": "5.1.0",
-    "start-server-and-test": "^1.11.2"
-  }
+    "devDependencies": {
+        "@storybook/addon-actions": "^6.5.12",
+        "@storybook/addon-essentials": "^6.5.12",
+        "@storybook/addon-interactions": "^6.5.12",
+        "@storybook/addon-links": "^6.5.12",
+        "@storybook/builder-webpack4": "^6.5.12",
+        "@storybook/manager-webpack4": "^6.5.12",
+        "@storybook/node-logger": "^6.5.12",
+        "@storybook/preset-create-react-app": "^3.2.0",
+        "@storybook/react": "^6.5.12",
+        "@storybook/testing-library": "^0.0.13",
+        "jest-image-snapshot": "4.0.2",
+        "jest-puppeteer": "4.4.0",
+        "prettier": "2.7.1",
+        "puppeteer": "5.1.0",
+        "start-server-and-test": "^1.11.2"
+    }
 }
