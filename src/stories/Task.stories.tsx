@@ -1,6 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Task } from '../Task'
+import { Task } from '../features/Todolist/Task/Task'
 import { action } from '@storybook/addon-actions'
 
 export default {

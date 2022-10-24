@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { Checkbox, IconButton } from '@mui/material'
 import { ChangeEvent } from 'react'
-import { EditableSpan } from './components/EditableSpan/EditableSpan'
 import RemoveIcon from '@mui/icons-material/Remove'
-import { useStyles } from './features/Todolist/Todolist'
+import { useStyles } from '../Todolist'
 import { useCallback } from 'react'
-import { TaskType } from './state/reducers/tasks-reducer'
-import { TaskStatuses } from './API/todolists-api'
+import { TaskType } from '../../../state/reducers/tasks-reducer'
+import { TaskStatuses } from '../../../API/todolists-api'
+import { EditableSpan } from '../../../components/EditableSpan/EditableSpan'
 
 type TaskPropsType = {
 	task: TaskType

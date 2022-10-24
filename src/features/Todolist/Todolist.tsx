@@ -5,7 +5,7 @@ import { useCallback, useEffect } from 'react'
 import { AddItemForm } from '../../components/AddItemForm/AddItemForm'
 import { EditableSpan } from '../../components/EditableSpan/EditableSpan'
 import ClearIcon from '@mui/icons-material/Clear'
-import { Task } from '../../Task'
+import { Task } from './Task/Task'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	changeTodolistFilterAC,
