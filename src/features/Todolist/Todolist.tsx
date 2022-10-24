@@ -19,12 +19,7 @@ import { AppStateType } from '../../state/store'
 import { TaskStatuses } from '../../API/todolists-api'
 
 export const useStyles = makeStyles({
-	checkbox: {
-		// color: green[800],
-		// '&.Mui-checked': {
-		//     color: green[600],
-		// }
-	},
+	checkbox: {},
 	title: {
 		padding: '10px',
 	},
