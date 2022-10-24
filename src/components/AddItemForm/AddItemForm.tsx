@@ -67,7 +67,7 @@ export const AddItemForm: React.FC<AddItemFormType> = React.memo((props) => {
 						autoComplete="my-site-field-x"
 					/>
 
-					<SvgIcon onClick={addItem} color="primary" sx={{ fontSize: 40 }}>
+					<SvgIcon onClick={addItem} color="primary" sx={{ fontSize: 40, cursor: 'pointer' }}>
 						<AddCircleRoundedIcon />
 					</SvgIcon>
 				</div>

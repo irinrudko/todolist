@@ -101,7 +101,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 	return (
 		<div>
 			<SvgIcon onClick={removeTodoList} fontSize="large">
-				<ClearIcon></ClearIcon>
+				<ClearIcon sx={{ cursor: 'pointer' }}></ClearIcon>
 			</SvgIcon>
 			<div className={classes.title}>
 				<Typography variant="h5" align="center" color="primary">
