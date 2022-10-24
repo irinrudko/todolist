@@ -1,6 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { AddItemForm } from '../AddItemForm'
+import { AddItemForm } from '../components/AddItemForm/AddItemForm'
 
 export default {
 	title: 'Todolist/AddItemForm',

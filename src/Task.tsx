@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Checkbox, IconButton } from '@mui/material'
 import { ChangeEvent } from 'react'
-import { EditableSpan } from './EditableSpan'
+import { EditableSpan } from './components/EditableSpan/EditableSpan'
 import RemoveIcon from '@mui/icons-material/Remove'
 import { useStyles } from './Todolist'
 import { useCallback } from 'react'

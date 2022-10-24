@@ -1,7 +1,7 @@
 import { Box, Fab, Modal, Typography } from '@mui/material'
 import * as React from 'react'
 import AddIcon from '@mui/icons-material/Add'
-import { AddItemForm } from './AddItemForm'
+import { AddItemForm } from './components/AddItemForm/AddItemForm'
 import { makeStyles } from '@mui/styles'
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
