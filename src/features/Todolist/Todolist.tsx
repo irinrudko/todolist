@@ -14,7 +14,7 @@ import {
 	TodolistType,
 } from '../../state/reducers/todolist-reducer'
 import { addTaskTC, fetchTasksTC, removeTaskTC, TaskType, updateTaskTC } from '../../state/reducers/tasks-reducer'
-import { FilterValuesType } from '../../App'
+import { FilterValuesType } from '../../app/App'
 import { AppStateType } from '../../state/store'
 import { TaskStatuses } from '../../API/todolists-api'
 
