@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 import { todolistsAPI } from '../../API/todolists-api'
-import { FilterValuesType } from '../../AppWithRedux'
+import { FilterValuesType } from '../../App'
 import { addTodolistAC } from '../reducers/todolists-tasks-reducer'
 
 const initialState: Array<TodolistType> = []

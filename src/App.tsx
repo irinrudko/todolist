@@ -16,7 +16,7 @@ export type TasksStateType = {
 	[key: string]: Array<TaskType>
 }
 
-export const AppWithRedux = () => {
+export const App = () => {
 	useEffect(() => {
 		dispatch(fetchTodoliststTC())
 	}, [])
