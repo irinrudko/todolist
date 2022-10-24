@@ -11,4 +11,4 @@ export default {
 
 const Template: ComponentStory<typeof App> = (args) => <App />
 
-export const AppWithReduxBasic = Template.bind({})
+export const AppBasic = Template.bind({})
