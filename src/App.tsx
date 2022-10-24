@@ -8,9 +8,6 @@ import { AppStateType } from './state/store'
 import { fetchTodoliststTC, TodolistType } from './state/reducers/todolist-reducer'
 import { TaskType } from './state/reducers/tasks-reducer'
 
-//TODO
-//refactor project folders according to React guidline (lesson 15 folder)
-
 export type FilterValuesType = 'all' | 'active' | 'completed'
 export type TasksStateType = {
 	[key: string]: Array<TaskType>
