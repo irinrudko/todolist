@@ -1,17 +1,14 @@
 import { Box, Fab, Modal, Typography } from '@mui/material'
 import * as React from 'react'
 import AddIcon from '@mui/icons-material/Add'
-import { AddItemForm } from './components/AddItemForm/AddItemForm'
+import { AddItemForm } from '../../components/AddItemForm/AddItemForm'
 import { makeStyles } from '@mui/styles'
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTodolistTC } from './state/reducers/todolist-reducer'
+import { addTodolistTC } from '../../state/reducers/todolist-reducer'
 
 const useStyles = makeStyles({
-	addButton: {
-		display: 'flex',
-		justifyContent: 'flex-end',
-	},
+	addButton: {},
 })
 
 const style = {

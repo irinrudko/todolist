@@ -1,12 +1,12 @@
 import { Container, Grid, Paper } from '@mui/material'
 import React, { useEffect } from 'react'
-import { AddNewTodolist } from './AddNewTodolist'
 import { Header } from './Header'
 import { Todolist } from './features/Todolist/Todolist'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from './state/store'
 import { fetchTodoliststTC, TodolistType } from './state/reducers/todolist-reducer'
 import { TaskType } from './state/reducers/tasks-reducer'
+import { AddNewTodolist } from './features/AddNewTodolist/AddNewTodolist'
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
 export type TasksStateType = {
@@ -25,7 +25,7 @@ export const App = () => {
 		<>
 			<Header />
 			<Container fixed>
-				<Grid container sx={{ padding: '20px' }}>
+				<Grid container sx={{ padding: '20px', alignItems: 'center', flexWrap: 'nowrap' }}>
 					<Grid container rowSpacing={5} columnSpacing={4} sx={{ padding: '20px' }}>
 						{todolists.map((tl) => {
 							return (
@@ -39,8 +39,8 @@ export const App = () => {
 							)
 						})}
 					</Grid>
+					<AddNewTodolist />
 				</Grid>
-				<AddNewTodolist />
 			</Container>
 		</>
 	)
