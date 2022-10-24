@@ -1,6 +1,6 @@
 import { Container, Grid, Paper } from '@mui/material'
 import React, { useEffect } from 'react'
-import { Header } from '../Header'
+import { Header } from '../components/Header/Header'
 import { Todolist } from '../features/Todolist/Todolist'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from '../state/store'
