@@ -6,7 +6,7 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import { useStyles } from './Todolist'
 import { useCallback } from 'react'
 import { TaskType } from './state/reducers/tasks-reducer'
-import { TaskStatuses } from './API/api'
+import { TaskStatuses } from './API/todolists-api'
 
 type TaskPropsType = {
 	task: TaskType

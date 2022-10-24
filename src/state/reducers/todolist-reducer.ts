@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux'
-import { todolistsAPI } from '../../API/api'
+import { todolistsAPI } from '../../API/todolists-api'
 import { FilterValuesType } from '../../AppWithRedux'
 import { addTodolistAC } from '../reducers/todolists-tasks-reducer'
 

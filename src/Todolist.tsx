@@ -11,7 +11,7 @@ import { changeTodolistFilterAC, changeTodolistTitleTH, removeTodolistTC, Todoli
 import { addTaskTC, fetchTasksTC, removeTaskTC, TaskType, updateTaskTC } from './state/reducers/tasks-reducer'
 import { FilterValuesType } from './AppWithRedux'
 import { AppStateType } from './state/store'
-import { TaskStatuses } from './API/api'
+import { TaskStatuses } from './API/todolists-api'
 
 export const useStyles = makeStyles({
 	checkbox: {

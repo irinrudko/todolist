@@ -1,5 +1,5 @@
 import { AppStateType } from './../store'
-import { TaskPriorities, tasksAPI, TaskStatuses, UpdateTaskModel } from './../../API/api'
+import { TaskPriorities, tasksAPI, TaskStatuses, UpdateTaskModel } from '../../API/todolists-api'
 import { Dispatch } from 'redux'
 import { TasksStateType } from '../../AppWithRedux'
 import { addTodolistAC } from '../reducers/todolists-tasks-reducer'
