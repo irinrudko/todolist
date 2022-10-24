@@ -59,7 +59,7 @@ export const AddItemForm: React.FC<AddItemFormType> = React.memo((props) => {
 						value={title}
 						onChange={onChangeHandler}
 						onKeyPress={onKeyPressHandler}
-						className={error ? 'error' : ''}
+						// className={error ? 'error' : ''}
 						error={!!error}
 						helperText={error}
 						type="text"
