@@ -2,16 +2,21 @@ import * as React from 'react'
 import { Button, SvgIcon, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { useCallback, useEffect } from 'react'
-import { AddItemForm } from './components/AddItemForm/AddItemForm'
-import { EditableSpan } from './components/EditableSpan/EditableSpan'
+import { AddItemForm } from '../../components/AddItemForm/AddItemForm'
+import { EditableSpan } from '../../components/EditableSpan/EditableSpan'
 import ClearIcon from '@mui/icons-material/Clear'
-import { Task } from './Task'
+import { Task } from '../../Task'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeTodolistFilterAC, changeTodolistTitleTH, removeTodolistTC, TodolistType } from './state/reducers/todolist-reducer'
-import { addTaskTC, fetchTasksTC, removeTaskTC, TaskType, updateTaskTC } from './state/reducers/tasks-reducer'
-import { FilterValuesType } from './App'
-import { AppStateType } from './state/store'
-import { TaskStatuses } from './API/todolists-api'
+import {
+	changeTodolistFilterAC,
+	changeTodolistTitleTH,
+	removeTodolistTC,
+	TodolistType,
+} from '../../state/reducers/todolist-reducer'
+import { addTaskTC, fetchTasksTC, removeTaskTC, TaskType, updateTaskTC } from '../../state/reducers/tasks-reducer'
+import { FilterValuesType } from '../../App'
+import { AppStateType } from '../../state/store'
+import { TaskStatuses } from '../../API/todolists-api'
 
 export const useStyles = makeStyles({
 	checkbox: {
