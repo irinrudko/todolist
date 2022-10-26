@@ -2,14 +2,11 @@ import React from 'react'
 import { Grid, Paper } from '@mui/material'
 import { Todolist } from './Todolist'
 import { TodolistType } from '../../state/reducers/todolist-reducer'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { AppStateType } from '../../state/store'
-import { TasksStateType } from '../../app/App'
 
 export const TodolistsList = () => {
 	const todolists = useSelector<AppStateType, TodolistType[]>((state) => state.todolists)
-	const tasks = useSelector<AppStateType, TasksStateType>((state) => state.tasks)
-	const dispatch = useDispatch()
 
 	return (
 		<>
