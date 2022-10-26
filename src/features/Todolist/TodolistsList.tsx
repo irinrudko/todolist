@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Grid, Paper } from '@mui/material'
 import { Todolist } from './Todolist'
-import { TodolistType } from '../../state/reducers/todolist-reducer'
-import { useSelector } from 'react-redux'
+import { fetchTodoliststTC, TodolistType } from '../../state/reducers/todolist-reducer'
+import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from '../../state/store'
 
 export const TodolistsList = () => {
 	const todolists = useSelector<AppStateType, TodolistType[]>((state) => state.todolists)
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(fetchTodoliststTC())
+	}, [])
 
 	return (
 		<>
