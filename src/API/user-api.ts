@@ -4,7 +4,7 @@ export const userAPI = {
 	me() {
 		return instance.get('auth/me')
 	},
-	login(data: LoginParamsType) {
+	login(data: LoginParamsData) {
 		return instance.post('auth/login', data)
 	},
 	logout() {
@@ -13,7 +13,7 @@ export const userAPI = {
 }
 
 //types
-export type LoginParamsType = {
+export type LoginParamsData = {
 	email: string
 	password: string
 	rememberMe: boolean
