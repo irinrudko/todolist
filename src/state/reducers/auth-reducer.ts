@@ -23,13 +23,12 @@ export const setIsLoggedInAC = (isLoggedIn: boolean) => ({ type: 'AUTH/SET-IS-LO
 
 //thunks
 export const loginTC = (data: LoginParamsData) => (dispatch: Dispatch) => {
-	userAPI
-		.login(data)
-		.then((res) => {
+	userAPI.login(data).then((res) => {
+		if (res.resultCode === 0) {
 			dispatch(setIsLoggedInAC(true))
-			// dispatch(setUserDataAC(res))
-		})
-		.catch((err: any) => {})
+			alert('success')
+		}
+	})
 }
 
 //types
