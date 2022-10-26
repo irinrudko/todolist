@@ -4,9 +4,10 @@ import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { tasksReducer } from '../../state/reducers/tasks-reducer'
 import { todolistsReducer } from '../../state/reducers/todolist-reducer'
-import { AppStateType } from '../../state/store'
 
-const initialStore: AppStateType = {
+type StorybookStoreType = ReturnType<typeof storybookRootReducer>
+
+const initialStore = {
 	todolists: [
 		{ id: 'todolistId1', title: 'What to learn', filter: 'all', addedDate: '', order: 0 },
 		{ id: 'todolistId2', title: 'What to buy', filter: 'all', addedDate: '', order: 1 },
@@ -110,12 +111,12 @@ const initialStore: AppStateType = {
 	},
 }
 
-const rootReducer = combineReducers({
+const storybookRootReducer = combineReducers({
 	tasks: tasksReducer,
 	todolists: todolistsReducer,
 })
 
-export const storybookStore = createStore(rootReducer, initialStore as AppStateType, applyMiddleware(thunk))
+export const storybookStore = createStore(storybookRootReducer, initialStore as StorybookStoreType, applyMiddleware(thunk))
 
 export const ReduxStoreProviderDecorator = (storyFn: any) => {
 	return <Provider store={storybookStore}>{storyFn()}</Provider>
