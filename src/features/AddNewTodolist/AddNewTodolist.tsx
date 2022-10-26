@@ -4,8 +4,8 @@ import AddIcon from '@mui/icons-material/Add'
 import { AddItemForm } from '../../components/AddItemForm/AddItemForm'
 import { makeStyles } from '@mui/styles'
 import { useCallback } from 'react'
-import { useDispatch } from 'react-redux'
 import { addTodolistTC } from '../../state/reducers/todolist-reducer'
+import { useAppDispatch } from '../../state/store'
 
 const useStyles = makeStyles({
 	addButton: {},
@@ -30,7 +30,7 @@ const style = {
 }
 
 export const AddNewTodolist = React.memo((props) => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const classes = useStyles()
 
 	const [open, setOpen] = React.useState(false)
