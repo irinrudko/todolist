@@ -29,6 +29,7 @@ export const App = () => {
 					<Routes>
 						<Route path="/" element={<TodolistsList />} />
 						<Route path="login" element={<Login />} />
+						<Route path="*" element={<h1>404: PAGE NOT FOUND</h1>} />
 					</Routes>
 					<AddNewTodolist />
 				</Grid>
