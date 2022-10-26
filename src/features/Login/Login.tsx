@@ -17,6 +17,11 @@ type FormikErrorType = {
 	rememberMe?: boolean
 }
 
+//TODO: improve validation:
+// onBlur (#16)
+//change error color
+//formik.resetForm() в onSubmit
+
 export const Login = () => {
 	const dispatch = useDispatch()
 
