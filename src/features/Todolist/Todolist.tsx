@@ -32,7 +32,7 @@ export const useStyles = makeStyles({
 export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 	useEffect(() => {
 		dispatch(fetchTasksTC(props.id))
-	}, [])
+	}, [props.id])
 
 	const classes = useStyles()
 	const dispatch = useDispatch()
