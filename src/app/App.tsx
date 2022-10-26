@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Container, Grid } from '@mui/material'
 import { Header } from '../components/Header/Header'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Login } from '../features/Login/Login'
 import { TodolistsList } from '../features/Todolist/TodolistsList'
 import { AppStateType } from '../state/store'
+import { initializeAppTC } from './app-reducer'
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
 export type TasksStateType = {
@@ -17,6 +18,10 @@ export type TasksStateType = {
 export const App = () => {
 	const dispatch = useDispatch()
 	const isLoggedIn = useSelector<AppStateType, boolean>((state) => state.auth.isLoggedIn)
+
+	useEffect(() => {
+		dispatch(initializeAppTC())
+	}, [])
 
 	if (!isLoggedIn) {
 		return (
