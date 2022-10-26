@@ -7,6 +7,9 @@ import { AppStateType } from '../state/store'
 import { fetchTodoliststTC, TodolistType } from '../state/reducers/todolist-reducer'
 import { TaskType } from '../state/reducers/tasks-reducer'
 import { AddNewTodolist } from '../features/AddNewTodolist/AddNewTodolist'
+import { Route, Routes } from 'react-router-dom'
+import { Login } from '../features/Login/Login'
+import { TodolistsList } from '../features/Todolist/TodolistsList'
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
 export type TasksStateType = {
@@ -26,20 +29,14 @@ export const App = () => {
 			<Header />
 			<Container fixed>
 				<Grid container sx={{ padding: '20px', alignItems: 'center', flexWrap: 'nowrap' }}>
-					<Grid container rowSpacing={5} columnSpacing={4} sx={{ padding: '20px' }}>
-						{todolists.map((tl) => {
-							return (
-								<>
-									<Grid item>
-										<Paper elevation={3} sx={{ padding: '10px' }}>
-											<Todolist key={tl.id} title={tl.title} filter={tl.filter} id={tl.id} />
-										</Paper>
-									</Grid>
-								</>
-							)
-						})}
-					</Grid>
+					<TodolistsList />
 					<AddNewTodolist />
+
+					{/* <Routes>
+					<Route path="/" element={<Todolist id={''} title={''} filter={'all'} />} />
+
+					<Route path="login" element={<Login />} />
+				</Routes> */}
 				</Grid>
 			</Container>
 		</>
