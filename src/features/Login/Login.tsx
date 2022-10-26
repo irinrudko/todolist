@@ -8,9 +8,9 @@ import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { loginTC } from '../../state/reducers/auth-reducer'
-import { AppStateType } from '../../state/store'
+import { AppStateType, useAppDispatch } from '../../state/store'
 import { Navigate } from 'react-router-dom'
 
 type FormikErrorType = {
@@ -25,7 +25,7 @@ type FormikErrorType = {
 //change error color
 
 export const Login = () => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const isLoggedIn = useSelector<AppStateType, boolean>((state) => state.auth.isLoggedIn)
 
 	const formik = useFormik({

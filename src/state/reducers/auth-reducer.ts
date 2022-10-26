@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux'
+import { AppThunk } from './../store'
 import { LoginParamsData, userAPI } from '../../API/user-api'
 
 const initialState: AuthInitialStateType = {
@@ -6,7 +6,6 @@ const initialState: AuthInitialStateType = {
 }
 
 //TODO
-//create useAppDispatch
 //create useAppSelector
 
 export const authReducer = (state: AuthInitialStateType = initialState, action: AuthActionsType): AuthInitialStateType => {
@@ -22,17 +21,19 @@ export const authReducer = (state: AuthInitialStateType = initialState, action: 
 export const setIsLoggedInAC = (isLoggedIn: boolean) => ({ type: 'AUTH/SET-IS-LOGGED-IN', isLoggedIn } as const)
 
 //thunks
-export const loginTC = (data: LoginParamsData) => (dispatch: Dispatch) => {
-	userAPI.login(data).then((res) => {
-		if (res.resultCode === 0) {
-			dispatch(setIsLoggedInAC(true))
-			alert('success')
-		}
-	})
-}
+export const loginTC =
+	(data: LoginParamsData): AppThunk =>
+	(dispatch) => {
+		userAPI.login(data).then((res) => {
+			if (res.resultCode === 0) {
+				dispatch(setIsLoggedInAC(true))
+				alert('success')
+			}
+		})
+	}
 
 //types
 type AuthInitialStateType = {
 	isLoggedIn: boolean
 }
-type AuthActionsType = ReturnType<typeof setIsLoggedInAC>
+export type AuthActionsType = ReturnType<typeof setIsLoggedInAC>

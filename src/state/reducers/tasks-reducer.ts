@@ -1,6 +1,5 @@
-import { AppStateType } from './../store'
+import { AppStateType, AppThunk } from './../store'
 import { TaskPriorities, tasksAPI, TaskStatuses, UpdateTaskModel } from '../../API/todolists-api'
-import { Dispatch } from 'redux'
 import { TasksStateType } from '../../app/App'
 import { addTodolistAC } from '../reducers/todolists-tasks-reducer'
 import { removeTodolistAC, setTodolistsAC } from './todolist-reducer'
@@ -93,31 +92,31 @@ export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) => {
 	} as const
 }
 
-export const fetchTasksTC = (todolistId: string) => {
-	return (dispatch: Dispatch) => {
+export const fetchTasksTC = (todolistId: string): AppThunk => {
+	return (dispatch) => {
 		tasksAPI.getTasks(todolistId).then((res) => {
 			let tasks = res.items
 			dispatch(setTasksAC(tasks, todolistId))
 		})
 	}
 }
-export const removeTaskTC = (id: string, todolistId: string) => {
-	return (dispatch: Dispatch) => {
+export const removeTaskTC = (id: string, todolistId: string): AppThunk => {
+	return (dispatch) => {
 		tasksAPI.deleteTask(todolistId, id).then(() => {
 			dispatch(removeTaskAC(id, todolistId))
 		})
 	}
 }
-export const addTaskTC = (title: string, todolistId: string) => {
-	return (dispatch: Dispatch) => {
+export const addTaskTC = (title: string, todolistId: string): AppThunk => {
+	return (dispatch) => {
 		tasksAPI.createTask(todolistId, title).then((res) => {
 			let task = res.data.item
 			dispatch(addTaskAC(task))
 		})
 	}
 }
-export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelType, todolistId: string) => {
-	return (dispatch: Dispatch, getState: () => AppStateType) => {
+export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelType, todolistId: string): AppThunk => {
+	return (dispatch, getState: () => AppStateType) => {
 		const state = getState()
 		const task = state.tasks[todolistId].find((t) => t.id === taskId)
 
@@ -161,7 +160,7 @@ export type UpdateDomainTaskModelType = {
 	startDate?: string
 	deadline?: string
 }
-type TasksActionType =
+export type TasksActionType =
 	| ReturnType<typeof removeTaskAC>
 	| ReturnType<typeof addTaskAC>
 	| ReturnType<typeof updateTaskAC>

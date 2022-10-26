@@ -6,7 +6,7 @@ import { AddItemForm } from '../../components/AddItemForm/AddItemForm'
 import { EditableSpan } from '../../components/EditableSpan/EditableSpan'
 import ClearIcon from '@mui/icons-material/Clear'
 import { Task } from './Task/Task'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
 	changeTodolistFilterAC,
 	changeTodolistTitleTH,
@@ -15,7 +15,7 @@ import {
 } from '../../state/reducers/todolist-reducer'
 import { addTaskTC, fetchTasksTC, removeTaskTC, TaskType, updateTaskTC } from '../../state/reducers/tasks-reducer'
 import { FilterValuesType } from '../../app/App'
-import { AppStateType } from '../../state/store'
+import { AppStateType, useAppDispatch } from '../../state/store'
 import { TaskStatuses } from '../../API/todolists-api'
 
 export const useStyles = makeStyles({
@@ -35,7 +35,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 	}, [props.id])
 
 	const classes = useStyles()
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const tasks = useSelector<AppStateType, Array<TaskType>>((state) => state.tasks[props.id])
 
 	///tasks filter
