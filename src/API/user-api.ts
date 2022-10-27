@@ -8,7 +8,7 @@ export const userAPI = {
 		return instance.post('auth/login', data).then((res) => res.data)
 	},
 	logout() {
-		return instance.delete('auth/login')
+		return instance.delete('auth/login').then(({ data }) => data)
 	},
 }
 

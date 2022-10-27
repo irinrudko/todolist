@@ -32,6 +32,14 @@ export const loginTC =
 		})
 	}
 
+export const logoutTC = (): AppThunk => (dispatch) => {
+	userAPI.logout().then((res) => {
+		if (res.resultCode === 0) {
+			dispatch(setIsLoggedInAC(false))
+		}
+	})
+}
+
 //types
 type AuthInitialStateType = {
 	isLoggedIn: boolean
