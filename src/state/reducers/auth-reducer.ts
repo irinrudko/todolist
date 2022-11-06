@@ -1,12 +1,10 @@
 import { AppThunk } from './../store'
 import { LoginParamsData, userAPI } from '../../API/user-api'
+import { setAppStatusAC } from './app-reducer'
 
 const initialState: AuthInitialStateType = {
 	isLoggedIn: false,
 }
-
-//TODO
-//create useAppSelector
 
 export const authReducer = (state: AuthInitialStateType = initialState, action: AuthActionsType): AuthInitialStateType => {
 	switch (action.type) {
@@ -24,18 +22,23 @@ export const setIsLoggedInAC = (isLoggedIn: boolean) => ({ type: 'AUTH/SET-IS-LO
 export const loginTC =
 	(data: LoginParamsData): AppThunk =>
 	(dispatch) => {
+		dispatch(setAppStatusAC('loading'))
+
 		userAPI.login(data).then((res) => {
 			if (res.resultCode === 0) {
 				dispatch(setIsLoggedInAC(true))
-				alert('success')
+				dispatch(setAppStatusAC('success'))
 			}
 		})
 	}
 
 export const logoutTC = (): AppThunk => (dispatch) => {
+	dispatch(setAppStatusAC('loading'))
+
 	userAPI.logout().then((res) => {
 		if (res.resultCode === 0) {
 			dispatch(setIsLoggedInAC(false))
+			dispatch(setAppStatusAC('success'))
 		}
 	})
 }
