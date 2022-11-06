@@ -36,7 +36,7 @@ export const App = () => {
 	return (
 		<>
 			<Header />
-			{/* {status === 'loading' && <LinearProgress />} */}
+			{status === 'loading' && <LinearProgress />}
 
 			<Container fixed>
 				<Grid container sx={{ padding: '20px', alignItems: 'center', flexWrap: 'nowrap' }}>
