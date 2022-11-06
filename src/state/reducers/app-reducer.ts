@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
-import { userAPI } from '../API/user-api'
-import { setIsLoggedInAC } from '../state/reducers/auth-reducer'
+import { userAPI } from '../../API/user-api'
+import { setIsLoggedInAC } from './auth-reducer'
 
 const initialState = {
 	isInitialized: false,

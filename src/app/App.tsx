@@ -7,7 +7,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Login } from '../features/Login/Login'
 import { TodolistsList } from '../features/Todolist/TodolistsList'
 import { useAppDispatch, useAppSelector } from '../state/store'
-import { initializeAppTC } from './app-reducer'
+import { initializeAppTC } from '../state/reducers/app-reducer'
 import { ErrorSnackbar } from '../components/ErrorSnackbar/ErrorSnackbar'
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
