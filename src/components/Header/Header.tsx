@@ -7,8 +7,7 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import { makeStyles } from '@mui/styles'
-import { useSelector } from 'react-redux'
-import { AppStateType, useAppDispatch } from '../../state/store'
+import { useAppDispatch, useAppSelector } from '../../state/store'
 import { logoutTC } from '../../state/reducers/auth-reducer'
 
 const useStyles = makeStyles({
@@ -20,7 +19,7 @@ const useStyles = makeStyles({
 export const Header = () => {
 	const classes = useStyles()
 	const dispatch = useAppDispatch()
-	const isLoggedIn = useSelector<AppStateType, boolean>((state) => state.auth.isLoggedIn)
+	const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
 
 	const logoutHandler = useCallback(() => {
 		dispatch(logoutTC())

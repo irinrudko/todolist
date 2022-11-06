@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import { Grid, Paper } from '@mui/material'
 import { Todolist } from './Todolist'
-import { fetchTodoliststTC as fetchTodoliststsTC, TodolistType } from '../../state/reducers/todolist-reducer'
-import { useSelector } from 'react-redux'
-import { AppStateType, useAppDispatch } from '../../state/store'
+import { fetchTodoliststTC as fetchTodoliststsTC } from '../../state/reducers/todolist-reducer'
+import { useAppDispatch, useAppSelector } from '../../state/store'
 
 export const TodolistsList = () => {
-	const todolists = useSelector<AppStateType, TodolistType[]>((state) => state.todolists)
 	const dispatch = useAppDispatch()
-	const isLoggedIn = useSelector<AppStateType, boolean>((state) => state.auth.isLoggedIn)
+	const todolists = useAppSelector((state) => state.todolists)
+	const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
 
 	useEffect(() => {
 		isLoggedIn && dispatch(fetchTodoliststsTC())
