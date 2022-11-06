@@ -1,4 +1,4 @@
-import { TodolistType } from './todolist-reducer'
+import { TodolistType } from './todolists-reducer'
 
 export const addTodolistAC = (todolist: TodolistType) => {
 	return {

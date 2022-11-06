@@ -11,7 +11,7 @@ import {
 	changeTodolistTitleTH,
 	removeTodolistTC,
 	TodolistType,
-} from '../../state/reducers/todolist-reducer'
+} from '../../state/reducers/todolists-reducer'
 import { addTaskTC, fetchTasksTC, removeTaskTC, updateTaskTC } from '../../state/reducers/tasks-reducer'
 import { FilterValuesType } from '../../app/App'
 import { useAppDispatch, useAppSelector } from '../../state/store'

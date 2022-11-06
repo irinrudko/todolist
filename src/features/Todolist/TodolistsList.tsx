@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Grid, Paper } from '@mui/material'
 import { Todolist } from './Todolist'
-import { fetchTodoliststTC as fetchTodoliststsTC } from '../../state/reducers/todolist-reducer'
+import { fetchTodoliststTC as fetchTodoliststsTC } from '../../state/reducers/todolists-reducer'
 import { useAppDispatch, useAppSelector } from '../../state/store'
 
 export const TodolistsList = () => {

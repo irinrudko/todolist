@@ -2,7 +2,7 @@ import { AppStateType, AppThunk } from './../store'
 import { TaskPriorities, tasksAPI, TaskStatuses, UpdateTaskModel } from '../../API/todolists-api'
 import { TasksStateType } from '../../app/App'
 import { addTodolistAC } from '../reducers/todolists-tasks-reducer'
-import { removeTodolistAC, setTodolistsAC } from './todolist-reducer'
+import { removeTodolistAC, setTodolistsAC } from './todolists-reducer'
 
 const initialState: TasksStateType = {}
 

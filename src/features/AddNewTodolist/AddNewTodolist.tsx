@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add'
 import { AddItemForm } from '../../components/AddItemForm/AddItemForm'
 import { makeStyles } from '@mui/styles'
 import { useCallback } from 'react'
-import { addTodolistTC } from '../../state/reducers/todolist-reducer'
+import { addTodolistTC } from '../../state/reducers/todolists-reducer'
 import { useAppDispatch } from '../../state/store'
 
 const useStyles = makeStyles({

@@ -1,5 +1,5 @@
 import { v1 } from 'uuid'
-import { changeTodolistFilterAC, changeTodolistTitleAC, todolistsReducer, TodolistType } from './todolist-reducer'
+import { changeTodolistFilterAC, changeTodolistTitleAC, todolistsReducer, TodolistType } from './todolists-reducer'
 
 let todolistId1: string
 let todolistId2: string
