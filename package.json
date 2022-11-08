@@ -1,6 +1,6 @@
 {
-	"name": "it-incubator-todolist-ts",
-	"homepage": "https://my-net.vercel.app/",
+	"name": "todolist",
+	"homepage": "https://todolist-irinrudko.vercel.app/",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
