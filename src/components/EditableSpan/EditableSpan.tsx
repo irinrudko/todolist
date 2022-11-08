@@ -28,10 +28,15 @@ export const EditableSpan: React.FC<EditableSpanType> = React.memo((props) => {
 
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		const changedTitle = e.currentTarget.value
+
 		if (changedTitle.length <= 30) {
 			setTitle(changedTitle)
 		} else {
 			setError('Title cannot be more than 30 symbols')
+		}
+
+		if (error !== null) {
+			setError(null)
 		}
 	}
 
