@@ -53,3 +53,5 @@ export type AppReducerActionsType =
 	| ReturnType<typeof setAppInitializedAC>
 	| ReturnType<typeof setAppStatusAC>
 	| ReturnType<typeof setAppErrorAC>
+
+export type ErrorUtilsDispatchType = ReturnType<typeof setAppStatusAC> | ReturnType<typeof setAppErrorAC>

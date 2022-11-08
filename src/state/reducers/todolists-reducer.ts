@@ -1,8 +1,8 @@
-import { Dispatch } from 'redux'
 import { todolistsAPI } from '../../API/todolists-api'
 import { FilterValuesType } from '../../app/App'
+import { handleServerNetworkError } from '../../utils/error-utils'
 import { AppThunk } from '../store'
-import { setAppErrorAC, setAppStatusAC } from './app-reducer'
+import { setAppStatusAC } from './app-reducer'
 import { addTodolistAC } from './todolists-tasks-reducer'
 
 const initialState: Array<TodolistType> = []
@@ -90,8 +90,7 @@ export const fetchTodoliststTC = (): AppThunk => {
 				dispatch(setAppStatusAC('success'))
 			})
 			.catch((error) => {
-				dispatch(setAppErrorAC(error.message))
-				dispatch(setAppStatusAC('fail'))
+				handleServerNetworkError(error, dispatch)
 			})
 	}
 }
@@ -106,8 +105,7 @@ export const removeTodolistTC = (id: string): AppThunk => {
 				dispatch(setAppStatusAC('success'))
 			})
 			.catch((error) => {
-				dispatch(setAppErrorAC(error.message))
-				dispatch(setAppStatusAC('fail'))
+				handleServerNetworkError(error, dispatch)
 			})
 	}
 }
@@ -123,8 +121,7 @@ export const addTodolistTC = (title: string): AppThunk => {
 				dispatch(setAppStatusAC('success'))
 			})
 			.catch((error) => {
-				dispatch(setAppErrorAC(error.message))
-				dispatch(setAppStatusAC('fail'))
+				handleServerNetworkError(error, dispatch)
 			})
 	}
 }
@@ -139,8 +136,7 @@ export const changeTodolistTitleTH = (id: string, title: string): AppThunk => {
 				dispatch(setAppStatusAC('success'))
 			})
 			.catch((error) => {
-				dispatch(setAppErrorAC(error.message))
-				dispatch(setAppStatusAC('fail'))
+				handleServerNetworkError(error, dispatch)
 			})
 	}
 }

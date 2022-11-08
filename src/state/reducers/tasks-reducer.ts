@@ -3,7 +3,8 @@ import { TaskPriorities, tasksAPI, TaskStatuses, UpdateTaskModel } from '../../A
 import { TasksStateType } from '../../app/App'
 import { addTodolistAC } from '../reducers/todolists-tasks-reducer'
 import { removeTodolistAC, setTodolistsAC } from './todolists-reducer'
-import { setAppErrorAC, setAppStatusAC } from './app-reducer'
+import { setAppStatusAC } from './app-reducer'
+import { handleServerNetworkError } from '../../utils/error-utils'
 
 const initialState: TasksStateType = {}
 
@@ -105,8 +106,7 @@ export const fetchTasksTC = (todolistId: string): AppThunk => {
 				dispatch(setAppStatusAC('success'))
 			})
 			.catch((error) => {
-				dispatch(setAppErrorAC(error.message))
-				dispatch(setAppStatusAC('fail'))
+				handleServerNetworkError(error, dispatch)
 			})
 	}
 }
@@ -121,8 +121,7 @@ export const removeTaskTC = (id: string, todolistId: string): AppThunk => {
 				dispatch(setAppStatusAC('success'))
 			})
 			.catch((error) => {
-				dispatch(setAppErrorAC(error.message))
-				dispatch(setAppStatusAC('fail'))
+				handleServerNetworkError(error, dispatch)
 			})
 	}
 }
@@ -138,8 +137,7 @@ export const addTaskTC = (title: string, todolistId: string): AppThunk => {
 				dispatch(setAppStatusAC('success'))
 			})
 			.catch((error) => {
-				dispatch(setAppErrorAC(error.message))
-				dispatch(setAppStatusAC('fail'))
+				handleServerNetworkError(error, dispatch)
 			})
 	}
 }
@@ -169,8 +167,7 @@ export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelT
 					dispatch(setAppStatusAC('success'))
 				})
 				.catch((error) => {
-					dispatch(setAppErrorAC(error.message))
-					dispatch(setAppStatusAC('fail'))
+					handleServerNetworkError(error, dispatch)
 				})
 		}
 	}
