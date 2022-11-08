@@ -39,15 +39,15 @@ export const AddItemForm: React.FC<AddItemFormType> = React.memo((props) => {
 		}
 	}
 	const addItem = () => {
-		if (title.trim() !== '' && title.length < 26) {
+		if (title.trim() !== '' && title.length <= 30) {
 			props.addItem(title.trim())
 			setTitle('')
 		} else {
 			setError('Title is required')
 		}
 
-		if (title.length >= 26) {
-			setError('Title cannot be more than 25 symbols')
+		if (title.length >= 31) {
+			setError('Title cannot be more than 30 symbols')
 		}
 	}
 
