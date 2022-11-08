@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux'
 import { todolistsAPI } from '../../API/todolists-api'
 import { FilterValuesType } from '../../app/App'
+import { AppThunk } from '../store'
 import { setAppErrorAC, setAppStatusAC } from './app-reducer'
 import { addTodolistAC } from './todolists-tasks-reducer'
 
@@ -78,8 +79,8 @@ export const changeTodolistFilterAC = (filter: FilterValuesType, id: string) => 
 	} as const
 }
 
-export const fetchTodoliststTC = () => {
-	return (dispatch: Dispatch) => {
+export const fetchTodoliststTC = (): AppThunk => {
+	return (dispatch) => {
 		dispatch(setAppStatusAC('loading'))
 
 		todolistsAPI
@@ -94,8 +95,8 @@ export const fetchTodoliststTC = () => {
 			})
 	}
 }
-export const removeTodolistTC = (id: string) => {
-	return (dispatch: Dispatch) => {
+export const removeTodolistTC = (id: string): AppThunk => {
+	return (dispatch) => {
 		dispatch(setAppStatusAC('loading'))
 
 		todolistsAPI
@@ -110,8 +111,8 @@ export const removeTodolistTC = (id: string) => {
 			})
 	}
 }
-export const addTodolistTC = (title: string) => {
-	return (dispatch: Dispatch) => {
+export const addTodolistTC = (title: string): AppThunk => {
+	return (dispatch) => {
 		dispatch(setAppStatusAC('loading'))
 
 		todolistsAPI
@@ -127,8 +128,8 @@ export const addTodolistTC = (title: string) => {
 			})
 	}
 }
-export const changeTodolistTitleTH = (id: string, title: string) => {
-	return (dispatch: Dispatch) => {
+export const changeTodolistTitleTH = (id: string, title: string): AppThunk => {
+	return (dispatch) => {
 		dispatch(setAppStatusAC('loading'))
 
 		todolistsAPI
