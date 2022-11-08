@@ -14,6 +14,7 @@ type EditableSpanType = {
 export const EditableSpan: React.FC<EditableSpanType> = React.memo((props) => {
 	const [editMode, setEditMode] = useState(false)
 	let [title, setTitle] = useState('')
+	let [error, setError] = useState<string | null>(null)
 
 	const enableEditMode = () => {
 		setEditMode(true)
@@ -26,7 +27,12 @@ export const EditableSpan: React.FC<EditableSpanType> = React.memo((props) => {
 	}
 
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		setTitle(e.currentTarget.value)
+		const changedTitle = e.currentTarget.value
+		if (changedTitle.length <= 30) {
+			setTitle(changedTitle)
+		} else {
+			setError('Title cannot be more than 30 symbols')
+		}
 	}
 
 	return editMode ? (
@@ -34,6 +40,8 @@ export const EditableSpan: React.FC<EditableSpanType> = React.memo((props) => {
 			value={title}
 			onChange={onChangeHandler}
 			onBlur={disableEditMode}
+			error={!!error}
+			helperText={error}
 			color="primary"
 			variant={'standard'}
 			autoFocus
