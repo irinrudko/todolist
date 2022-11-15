@@ -1,30 +1,33 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Dispatch } from 'redux'
 import { userAPI } from '../../API/user-api'
 import { setIsLoggedInAC } from './auth-reducer'
 
-const initialState = {
+const initialState: AppInitialStateType = {
 	isInitialized: false,
 	status: 'loading' as RequestStatusType,
 	error: null,
 }
 
-export const appReducer = (state: AppInitialStateType = initialState, action: AppReducerActionsType): AppInitialStateType => {
-	switch (action.type) {
-		case 'APP/SET-IS-INITIALIZED':
-			return { ...state, isInitialized: action.value }
-		case 'APP/SET-STATUS':
-			return { ...state, status: action.status }
-		case 'APP/SET-ERROR':
-			return { ...state, error: action.error }
-		default:
-			return { ...state }
-	}
-}
+const slice = createSlice({
+	name: 'app',
+	initialState: initialState,
+	reducers: {
+		setAppInitializedAC(state, action: PayloadAction<{ isInitialized: boolean }>) {
+			state.isInitialized = action.payload.isInitialized
+		},
+		setAppStatusAC(state, action: PayloadAction<{ status: RequestStatusType }>) {
+			state.status = action.payload.status
+		},
+		setAppErrorAC(state, action: PayloadAction<{ error: string | null }>) {
+			state.error = action.payload.error
+		},
+	},
+})
 
-//action creators
-export const setAppInitializedAC = (value: boolean) => ({ type: 'APP/SET-IS-INITIALIZED', value } as const)
-export const setAppStatusAC = (status: RequestStatusType) => ({ type: 'APP/SET-STATUS', status } as const)
-export const setAppErrorAC = (error: string | null) => ({ type: 'APP/SET-ERROR', error } as const)
+export const appReducer = slice.reducer
+
+export const { setAppInitializedAC, setAppStatusAC, setAppErrorAC } = slice.actions
 
 //thunks
 export const initializeAppTC = () => (dispatch: Dispatch) => {
@@ -38,7 +41,7 @@ export const initializeAppTC = () => (dispatch: Dispatch) => {
 		})
 		.catch(() => {})
 		.finally(() => {
-			dispatch(setAppInitializedAC(true))
+			dispatch(setAppInitializedAC({ isInitialized: true }))
 		})
 }
 //types
