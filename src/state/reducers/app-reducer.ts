@@ -32,7 +32,7 @@ export const initializeAppTC = () => (dispatch: Dispatch) => {
 		.me()
 		.then((res) => {
 			if (res.data.resultCode === 0) {
-				dispatch(setIsLoggedInAC(true))
+				dispatch(setIsLoggedInAC({ isLoggedIn: true }))
 			} else {
 			}
 		})
