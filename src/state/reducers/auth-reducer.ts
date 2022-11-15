@@ -37,23 +37,23 @@ export const setIsLoggedInAC = slice.actions.setIsLoggedInAC
 export const loginTC =
 	(data: LoginParamsData): AppThunk =>
 	(dispatch) => {
-		dispatch(setAppStatusAC('loading'))
+		dispatch(setAppStatusAC({ status: 'loading' }))
 
 		userAPI.login(data).then((res) => {
 			if (res.resultCode === 0) {
 				dispatch(setIsLoggedInAC({ isLoggedIn: true }))
-				dispatch(setAppStatusAC('success'))
+				dispatch(setAppStatusAC({ status: 'success' }))
 			}
 		})
 	}
 
 export const logoutTC = (): AppThunk => (dispatch) => {
-	dispatch(setAppStatusAC('loading'))
+	dispatch(setAppStatusAC({ status: 'loading' }))
 
 	userAPI.logout().then((res) => {
 		if (res.resultCode === 0) {
 			dispatch(setIsLoggedInAC({ isLoggedIn: false }))
-			dispatch(setAppStatusAC('success'))
+			dispatch(setAppStatusAC({ status: 'success' }))
 		}
 	})
 }
