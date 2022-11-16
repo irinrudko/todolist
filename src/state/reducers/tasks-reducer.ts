@@ -93,7 +93,6 @@ export const addTaskTC = (title: string, todolistId: string): AppThunk => {
 			})
 			.catch((error) => {
 				handleServerNetworkError(error, dispatch)
-				debugger
 			})
 	}
 }

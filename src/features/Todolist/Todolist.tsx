@@ -66,8 +66,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 	)
 	const changeFilter = useCallback(
 		(filter: FilterValuesType, todolistId: string) => {
-			debugger
-			dispatch(changeTodolistFilterAC(filter, todolistId))
+			dispatch(changeTodolistFilterAC({ filter, id: todolistId }))
 		},
 		[dispatch]
 	)

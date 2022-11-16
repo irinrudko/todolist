@@ -9,7 +9,7 @@ const initialState: AuthInitialStateType = {
 
 const slice = createSlice({
 	name: 'auth',
-	initialState: initialState,
+	initialState,
 	reducers: {
 		setIsLoggedInAC(state, action: PayloadAction<{ isLoggedIn: boolean }>) {
 			state.isLoggedIn = action.payload.isLoggedIn
@@ -20,18 +20,6 @@ const slice = createSlice({
 export const authReducer = slice.reducer
 
 export const setIsLoggedInAC = slice.actions.setIsLoggedInAC
-
-// export const authReducer = (state: AuthInitialStateType = initialState, action: AuthActionsType): AuthInitialStateType => {
-// 	switch (action.type) {
-// 		case 'AUTH/SET-IS-LOGGED-IN':
-// 			return { ...state, isLoggedIn: action.isLoggedIn }
-// 		default:
-// 			return state
-// 	}
-// }
-
-//action creators
-// export const setIsLoggedInAC = (isLoggedIn: boolean) => ({ type: 'AUTH/SET-IS-LOGGED-IN', isLoggedIn } as const)
 
 //thunks
 export const loginTC =

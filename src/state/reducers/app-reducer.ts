@@ -11,7 +11,7 @@ const initialState: AppInitialStateType = {
 
 const slice = createSlice({
 	name: 'app',
-	initialState: initialState,
+	initialState,
 	reducers: {
 		setAppInitializedAC(state, action: PayloadAction<{ isInitialized: boolean }>) {
 			state.isInitialized = action.payload.isInitialized
