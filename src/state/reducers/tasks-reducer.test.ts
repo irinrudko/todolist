@@ -100,7 +100,7 @@ beforeEach(() => {
 })
 
 it('should remove the correct task', () => {
-	const endState = tasksReducer(startState, removeTaskAC('taskId', todolistId1))
+	const endState = tasksReducer(startState, removeTaskAC({ id: 'taskId', todolistId: todolistId1 }))
 
 	expect(endState[todolistId1].every((t) => t.id !== 'taskId')).toBeTruthy()
 	expect(endState[todolistId1].length).toBe(2)
@@ -123,7 +123,7 @@ it('should add a task to the correct todolist', () => {
 		todoListId: todolistId1,
 	}
 
-	const endState = tasksReducer(startState, addTaskAC(task))
+	const endState = tasksReducer(startState, addTaskAC({ task }))
 
 	expect(endState[todolistId1].length).toBe(4)
 	expect(endState[todolistId1][0].title).toBe(title)
@@ -133,13 +133,19 @@ it('should add a task to the correct todolist', () => {
 })
 
 it('should update the task status to not completed', () => {
-	const endState = tasksReducer(startState, updateTaskAC('taskToUpdateId', { status: 0 }, todolistId2))
+	const endState = tasksReducer(
+		startState,
+		updateTaskAC({ id: 'taskToUpdateId', model: { status: 0 }, todolistId: todolistId2 })
+	)
 
 	expect(endState[todolistId2][0].status).toBe(0)
 	expect(endState[todolistId2][0].id).toBe('taskToUpdateId')
 })
 it('should change the correct task title', () => {
-	const endState = tasksReducer(startState, updateTaskAC('taskToUpdateId', { title: 'changedTitle' }, todolistId2))
+	const endState = tasksReducer(
+		startState,
+		updateTaskAC({ id: 'taskToUpdateId', model: { title: 'changedTitle' }, todolistId: todolistId2 })
+	)
 
 	expect(endState[todolistId2][0].title).toBe('changedTitle')
 	expect(endState[todolistId2][0].id).toBe('taskToUpdateId')
