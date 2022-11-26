@@ -1,6 +1,6 @@
 {
 	"name": "todolist",
-	"homepage": "https://todolist-irinrudko.vercel.app/",
+	"homepage": "https://irinrudko.github.io/todolist/",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
@@ -38,7 +38,9 @@
 		"build-storybook": "build-storybook -s public",
 		"jest:integration": "jest -c integration/jest.config.js",
 		"test:integration": "start-server-and-test storybook http-get://localhost:9009 jest:integration",
-		"format": "yarn prettier --write ."
+		"format": "yarn prettier --write .",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
 	},
 	"eslintConfig": {
 		"extends": "react-app",
@@ -85,6 +87,7 @@
 		"@storybook/preset-create-react-app": "^3.2.0",
 		"@storybook/react": "^6.5.12",
 		"@storybook/testing-library": "^0.0.13",
+		"gh-pages": "^4.0.0",
 		"jest-image-snapshot": "4.0.2",
 		"jest-puppeteer": "4.4.0",
 		"prettier": "2.7.1",
