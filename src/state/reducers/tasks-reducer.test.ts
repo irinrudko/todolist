@@ -150,3 +150,7 @@ it('should change the correct task title', () => {
 	expect(endState[todolistId2][0].title).toBe('changedTitle')
 	expect(endState[todolistId2][0].id).toBe('taskToUpdateId')
 })
+
+// TODO
+//test status (checked / not checked)
+//delete todolist + tasks
