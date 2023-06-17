@@ -2,6 +2,7 @@ import { AppThunk } from './../store'
 import { LoginParamsData, userAPI } from '../../API/user-api'
 import { setAppStatusAC } from './app-reducer'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { clearTodolists } from './todolists-reducer'
 
 const initialState: AuthInitialStateType = {
 	isLoggedIn: false,

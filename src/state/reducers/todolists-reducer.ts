@@ -39,12 +39,16 @@ const slice = createSlice({
 			const index = state.findIndex((tl) => tl.id === action.payload.id)
 			state[index].filter = action.payload.filter
 		},
+		clearTodolists() {
+			return []
+		},
 	},
 })
 
 export const todolistsReducer = slice.reducer
 
-export const { setTodolistsAC, removeTodolistAC, addTodolistAC, changeTodolistTitleAC, changeTodolistFilterAC } = slice.actions
+export const { setTodolistsAC, removeTodolistAC, addTodolistAC, changeTodolistTitleAC, changeTodolistFilterAC, clearTodolists } =
+	slice.actions
 
 export const fetchTodoliststTC = (): AppThunk => {
 	return (dispatch) => {
