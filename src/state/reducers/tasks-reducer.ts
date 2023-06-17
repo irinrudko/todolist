@@ -50,6 +50,7 @@ const slice = createSlice({
 })
 
 export const tasksReducer = slice.reducer
+export const tasksActions = slice.actions
 export const { removeTaskAC, addTaskAC, updateTaskAC, setTasksAC, clearTasks } = slice.actions
 
 export const fetchTasksTC = (todolistId: string): AppThunk => {

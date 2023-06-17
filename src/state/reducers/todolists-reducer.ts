@@ -46,6 +46,7 @@ const slice = createSlice({
 })
 
 export const todolistsReducer = slice.reducer
+export const todolistsActions = slice.actions
 
 export const { setTodolistsAC, removeTodolistAC, addTodolistAC, changeTodolistTitleAC, changeTodolistFilterAC, clearTodolists } =
 	slice.actions
