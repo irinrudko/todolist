@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { makeStyles } from '@mui/styles'
 import { useAppDispatch, useAppSelector } from '../../state/store'
 import { logoutTC } from '../../state/reducers/auth-reducer'
+import { selectIsLoggedIn } from '../../features/Login/auth-selectors'
 
 const useStyles = makeStyles({
 	toolbar: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
 export const Header = () => {
 	const classes = useStyles()
 	const dispatch = useAppDispatch()
-	const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
+	const isLoggedIn = useAppSelector(selectIsLoggedIn)
 
 	const logoutHandler = useCallback(() => {
 		dispatch(logoutTC())

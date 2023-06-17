@@ -3,11 +3,13 @@ import { Grid, Paper } from '@mui/material'
 import { Todolist } from './Todolist'
 import { fetchTodoliststTC as fetchTodoliststsTC } from '../../state/reducers/todolists-reducer'
 import { useAppDispatch, useAppSelector } from '../../state/store'
+import { selectIsLoggedIn } from '../Login/auth-selectors'
+import { selectTodolists } from './todolists-selectors'
 
 export const TodolistsList = () => {
 	const dispatch = useAppDispatch()
-	const todolists = useAppSelector((state) => state.todolists)
-	const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
+	const todolists = useAppSelector(selectTodolists)
+	const isLoggedIn = useAppSelector(selectIsLoggedIn)
 
 	useEffect(() => {
 		isLoggedIn && dispatch(fetchTodoliststsTC())

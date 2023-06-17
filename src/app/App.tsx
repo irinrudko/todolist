@@ -9,6 +9,8 @@ import { TodolistsList } from '../features/Todolist/TodolistsList'
 import { useAppDispatch, useAppSelector } from '../state/store'
 import { initializeAppTC } from '../state/reducers/app-reducer'
 import { ErrorSnackbar } from '../components/ErrorSnackbar/ErrorSnackbar'
+import { selectIsLoggedIn } from '../features/Login/auth-selectors'
+import { selectAppStatus } from './app-selectors'
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
 export type TasksStateType = {
@@ -17,8 +19,8 @@ export type TasksStateType = {
 
 export const App = () => {
 	const dispatch = useAppDispatch()
-	const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
-	const status = useAppSelector((state) => state.app.status)
+	const isLoggedIn = useAppSelector(selectIsLoggedIn)
+	const status = useAppSelector(selectAppStatus)
 
 	useEffect(() => {
 		dispatch(initializeAppTC())
