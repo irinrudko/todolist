@@ -1,7 +1,7 @@
 import { AppThunk } from './../store'
 import { LoginParamsData, userAPI } from '../../API/user-api'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { clearTodolists, todolistsActions } from './todolists-reducer'
+import { todolistsActions } from './todolists-reducer'
 import { appActions } from './app-reducer'
 import { tasksActions } from './tasks-reducer'
 
@@ -19,8 +19,6 @@ const slice = createSlice({
 
 export const authReducer = slice.reducer
 export const authActions = slice.actions
-
-// export const setIsLoggedInAC = slice.actions.setIsLoggedInAC // в документации
 
 //thunks
 export const loginTC =

@@ -28,8 +28,6 @@ const slice = createSlice({
 export const appReducer = slice.reducer
 export const appActions = slice.actions
 
-// export const { setAppInitializedAC, setAppStatusAC, setAppErrorAC } = slice.actions
-
 //thunks
 export const initializeAppTC = () => (dispatch: Dispatch) => {
 	userAPI
@@ -52,5 +50,3 @@ type AppInitialStateType = {
 	error: string | null
 }
 type RequestStatusType = 'idle' | 'loading' | 'success' | 'fail'
-
-// export type ErrorUtilsDispatchType = ReturnType<typeof setAppStatusAC> | ReturnType<typeof setAppErrorAC>

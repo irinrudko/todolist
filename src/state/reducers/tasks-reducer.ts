@@ -1,10 +1,10 @@
 import { AppStateType, AppThunk } from './../store'
 import { TaskPriorities, tasksAPI, TaskStatuses, UpdateTaskModel } from '../../API/todolists-api'
 import { TasksStateType } from '../../app/App'
-import { addTodolistAC, removeTodolistAC, setTodolistsAC } from './todolists-reducer'
 import { handleServerNetworkError } from '../../utils/error-utils'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { appActions } from './app-reducer'
+import { todolistsActions } from './todolists-reducer'
 
 const initialState: TasksStateType = {}
 
@@ -35,13 +35,13 @@ const slice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
-		builder.addCase(addTodolistAC, (state, action) => {
+		builder.addCase(todolistsActions.addTodolistAC, (state, action) => {
 			state[action.payload.todolist.id] = []
 		})
-		builder.addCase(removeTodolistAC, (state, action) => {
+		builder.addCase(todolistsActions.removeTodolistAC, (state, action) => {
 			delete state[action.payload.id]
 		})
-		builder.addCase(setTodolistsAC, (state, action) => {
+		builder.addCase(todolistsActions.setTodolistsAC, (state, action) => {
 			action.payload.todolists.forEach((tl) => {
 				state[tl.id] = []
 			})
@@ -157,6 +157,4 @@ export type TasksActionType =
 	| ReturnType<typeof removeTaskAC>
 	| ReturnType<typeof addTaskAC>
 	| ReturnType<typeof updateTaskAC>
-	| ReturnType<typeof removeTodolistAC>
-	| ReturnType<typeof setTodolistsAC>
 	| ReturnType<typeof setTasksAC>

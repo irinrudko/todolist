@@ -48,9 +48,6 @@ const slice = createSlice({
 export const todolistsReducer = slice.reducer
 export const todolistsActions = slice.actions
 
-export const { setTodolistsAC, removeTodolistAC, addTodolistAC, changeTodolistTitleAC, changeTodolistFilterAC, clearTodolists } =
-	slice.actions
-
 export const fetchTodoliststTC = (): AppThunk => {
 	return (dispatch) => {
 		dispatch(appActions.setAppStatusAC({ status: 'loading' }))
@@ -58,7 +55,7 @@ export const fetchTodoliststTC = (): AppThunk => {
 		todolistsAPI
 			.getTodolists()
 			.then((todolists) => {
-				dispatch(setTodolistsAC({ todolists }))
+				dispatch(todolistsActions.setTodolistsAC({ todolists }))
 				dispatch(appActions.setAppStatusAC({ status: 'success' }))
 			})
 			.catch((error) => {
@@ -73,7 +70,7 @@ export const removeTodolistTC = (id: string): AppThunk => {
 		todolistsAPI
 			.deleteTodolist(id)
 			.then(() => {
-				dispatch(removeTodolistAC({ id }))
+				dispatch(todolistsActions.removeTodolistAC({ id }))
 				dispatch(appActions.setAppStatusAC({ status: 'success' }))
 			})
 			.catch((error) => {
@@ -89,7 +86,7 @@ export const addTodolistTC = (title: string): AppThunk => {
 			.createTodolist(title)
 			.then((res) => {
 				let todolist = res.data.item
-				dispatch(addTodolistAC({ todolist }))
+				dispatch(todolistsActions.addTodolistAC({ todolist }))
 				dispatch(appActions.setAppStatusAC({ status: 'success' }))
 			})
 			.catch((error) => {
@@ -104,7 +101,7 @@ export const changeTodolistTitleTH = (id: string, title: string): AppThunk => {
 		todolistsAPI
 			.updateTodolist(id, title)
 			.then(() => {
-				dispatch(changeTodolistTitleAC({ id, title }))
+				dispatch(todolistsActions.changeTodolistTitleAC({ id, title }))
 				dispatch(appActions.setAppStatusAC({ status: 'success' }))
 			})
 			.catch((error) => {
@@ -122,10 +119,3 @@ type TodolistResponseType = {
 export type TodolistType = TodolistResponseType & {
 	filter: FilterValuesType
 }
-
-export type TodolistsActionTypes =
-	| ReturnType<typeof removeTodolistAC>
-	| ReturnType<typeof addTodolistAC>
-	| ReturnType<typeof changeTodolistTitleAC>
-	| ReturnType<typeof changeTodolistFilterAC>
-	| ReturnType<typeof setTodolistsAC>
