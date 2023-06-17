@@ -26,8 +26,9 @@ const slice = createSlice({
 })
 
 export const appReducer = slice.reducer
+export const appActions = slice.actions
 
-export const { setAppInitializedAC, setAppStatusAC, setAppErrorAC } = slice.actions
+// export const { setAppInitializedAC, setAppStatusAC, setAppErrorAC } = slice.actions
 
 //thunks
 export const initializeAppTC = () => (dispatch: Dispatch) => {
@@ -41,7 +42,7 @@ export const initializeAppTC = () => (dispatch: Dispatch) => {
 		})
 		.catch(() => {})
 		.finally(() => {
-			dispatch(setAppInitializedAC({ isInitialized: true }))
+			dispatch(appActions.setAppInitializedAC({ isInitialized: true }))
 		})
 }
 //types
@@ -52,9 +53,4 @@ type AppInitialStateType = {
 }
 type RequestStatusType = 'idle' | 'loading' | 'success' | 'fail'
 
-export type AppReducerActionsType =
-	| ReturnType<typeof setAppInitializedAC>
-	| ReturnType<typeof setAppStatusAC>
-	| ReturnType<typeof setAppErrorAC>
-
-export type ErrorUtilsDispatchType = ReturnType<typeof setAppStatusAC> | ReturnType<typeof setAppErrorAC>
+// export type ErrorUtilsDispatchType = ReturnType<typeof setAppStatusAC> | ReturnType<typeof setAppErrorAC>

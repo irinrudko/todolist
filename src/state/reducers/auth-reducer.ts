@@ -1,8 +1,8 @@
 import { AppThunk } from './../store'
 import { LoginParamsData, userAPI } from '../../API/user-api'
-import { setAppStatusAC } from './app-reducer'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { clearTodolists } from './todolists-reducer'
+import { appActions } from './app-reducer'
 
 const slice = createSlice({
 	name: 'auth',
@@ -25,23 +25,23 @@ export const authActions = slice.actions
 export const loginTC =
 	(data: LoginParamsData): AppThunk =>
 	(dispatch) => {
-		dispatch(setAppStatusAC({ status: 'loading' }))
+		dispatch(appActions.setAppStatusAC({ status: 'loading' }))
 
 		userAPI.login(data).then((res) => {
 			if (res.resultCode === 0) {
 				dispatch(authActions.setIsLoggedInAC({ isLoggedIn: true }))
-				dispatch(setAppStatusAC({ status: 'success' }))
+				dispatch(appActions.setAppStatusAC({ status: 'success' }))
 			}
 		})
 	}
 
 export const logoutTC = (): AppThunk => (dispatch) => {
-	dispatch(setAppStatusAC({ status: 'loading' }))
+	dispatch(appActions.setAppStatusAC({ status: 'loading' }))
 
 	userAPI.logout().then((res) => {
 		if (res.resultCode === 0) {
 			dispatch(authActions.setIsLoggedInAC({ isLoggedIn: false }))
-			dispatch(setAppStatusAC({ status: 'success' }))
+			dispatch(appActions.setAppStatusAC({ status: 'success' }))
 		}
 	})
 }
