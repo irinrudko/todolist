@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Dispatch } from 'redux'
 import { userAPI } from '../../API/user-api'
-import { setIsLoggedInAC } from './auth-reducer'
+import { authActions } from './auth-reducer'
 
 const initialState: AppInitialStateType = {
 	isInitialized: false,
@@ -35,7 +35,7 @@ export const initializeAppTC = () => (dispatch: Dispatch) => {
 		.me()
 		.then((res) => {
 			if (res.data.resultCode === 0) {
-				dispatch(setIsLoggedInAC({ isLoggedIn: true }))
+				dispatch(authActions.setIsLoggedInAC({ isLoggedIn: true }))
 			} else {
 			}
 		})

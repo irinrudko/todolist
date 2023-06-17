@@ -3,6 +3,7 @@ import { LoginParamsData, userAPI } from '../../API/user-api'
 import { setAppStatusAC } from './app-reducer'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { clearTodolists } from './todolists-reducer'
+import { Dispatch } from 'redux'
 
 const initialState: AuthInitialStateType = {
 	isLoggedIn: false,
@@ -19,8 +20,9 @@ const slice = createSlice({
 })
 
 export const authReducer = slice.reducer
+export const authActions = slice.actions
 
-export const setIsLoggedInAC = slice.actions.setIsLoggedInAC
+// export const setIsLoggedInAC = slice.actions.setIsLoggedInAC // в документации
 
 //thunks
 export const loginTC =
@@ -30,7 +32,7 @@ export const loginTC =
 
 		userAPI.login(data).then((res) => {
 			if (res.resultCode === 0) {
-				dispatch(setIsLoggedInAC({ isLoggedIn: true }))
+				dispatch(authActions.setIsLoggedInAC({ isLoggedIn: true }))
 				dispatch(setAppStatusAC({ status: 'success' }))
 			}
 		})
@@ -41,7 +43,7 @@ export const logoutTC = (): AppThunk => (dispatch) => {
 
 	userAPI.logout().then((res) => {
 		if (res.resultCode === 0) {
-			dispatch(setIsLoggedInAC({ isLoggedIn: false }))
+			dispatch(authActions.setIsLoggedInAC({ isLoggedIn: false }))
 			dispatch(setAppStatusAC({ status: 'success' }))
 		}
 	})
@@ -51,4 +53,3 @@ export const logoutTC = (): AppThunk => (dispatch) => {
 type AuthInitialStateType = {
 	isLoggedIn: boolean
 }
-export type AuthActionsType = ReturnType<typeof setIsLoggedInAC>
