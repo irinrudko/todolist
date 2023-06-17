@@ -1,6 +1,6 @@
 import { v1 } from 'uuid'
 import { TasksStateType } from '../../app/App'
-import { addTaskAC, removeTaskAC, updateTaskAC, tasksReducer, TaskType } from './tasks-reducer'
+import { tasksReducer, TaskType, tasksActions } from './tasks-reducer'
 
 //TODO:
 //add tests for new reducers
@@ -100,7 +100,7 @@ beforeEach(() => {
 })
 
 it('should remove the correct task', () => {
-	const endState = tasksReducer(startState, removeTaskAC({ id: 'taskId', todolistId: todolistId1 }))
+	const endState = tasksReducer(startState, tasksActions.removeTaskAC({ id: 'taskId', todolistId: todolistId1 }))
 
 	expect(endState[todolistId1].every((t) => t.id !== 'taskId')).toBeTruthy()
 	expect(endState[todolistId1].length).toBe(2)
@@ -123,7 +123,7 @@ it('should add a task to the correct todolist', () => {
 		todoListId: todolistId1,
 	}
 
-	const endState = tasksReducer(startState, addTaskAC({ task }))
+	const endState = tasksReducer(startState, tasksActions.addTaskAC({ task }))
 
 	expect(endState[todolistId1].length).toBe(4)
 	expect(endState[todolistId1][0].title).toBe(title)
@@ -135,7 +135,7 @@ it('should add a task to the correct todolist', () => {
 it('should update the task status to not completed', () => {
 	const endState = tasksReducer(
 		startState,
-		updateTaskAC({ id: 'taskToUpdateId', model: { status: 0 }, todolistId: todolistId2 })
+		tasksActions.updateTaskAC({ id: 'taskToUpdateId', model: { status: 0 }, todolistId: todolistId2 })
 	)
 
 	expect(endState[todolistId2][0].status).toBe(0)
@@ -144,7 +144,7 @@ it('should update the task status to not completed', () => {
 it('should change the correct task title', () => {
 	const endState = tasksReducer(
 		startState,
-		updateTaskAC({ id: 'taskToUpdateId', model: { title: 'changedTitle' }, todolistId: todolistId2 })
+		tasksActions.updateTaskAC({ id: 'taskToUpdateId', model: { title: 'changedTitle' }, todolistId: todolistId2 })
 	)
 
 	expect(endState[todolistId2][0].title).toBe('changedTitle')

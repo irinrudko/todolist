@@ -51,7 +51,6 @@ const slice = createSlice({
 
 export const tasksReducer = slice.reducer
 export const tasksActions = slice.actions
-export const { removeTaskAC, addTaskAC, updateTaskAC, setTasksAC, clearTasks } = slice.actions
 
 export const fetchTasksTC = (todolistId: string): AppThunk => {
 	return (dispatch) => {
@@ -61,7 +60,7 @@ export const fetchTasksTC = (todolistId: string): AppThunk => {
 			.getTasks(todolistId)
 			.then((res) => {
 				let tasks = res.items
-				dispatch(setTasksAC({ tasks, todolistId }))
+				dispatch(tasksActions.setTasksAC({ tasks, todolistId }))
 				dispatch(appActions.setAppStatusAC({ status: 'success' }))
 			})
 			.catch((error) => {
@@ -76,7 +75,7 @@ export const removeTaskTC = (id: string, todolistId: string): AppThunk => {
 		tasksAPI
 			.deleteTask(todolistId, id)
 			.then(() => {
-				dispatch(removeTaskAC({ id, todolistId }))
+				dispatch(tasksActions.removeTaskAC({ id, todolistId }))
 				dispatch(appActions.setAppStatusAC({ status: 'success' }))
 			})
 			.catch((error) => {
@@ -92,7 +91,7 @@ export const addTaskTC = (title: string, todolistId: string): AppThunk => {
 			.createTask(todolistId, title)
 			.then((res) => {
 				let task = res.data.item
-				dispatch(addTaskAC({ task }))
+				dispatch(tasksActions.addTaskAC({ task }))
 				dispatch(appActions.setAppStatusAC({ status: 'success' }))
 			})
 			.catch((error) => {
@@ -122,7 +121,7 @@ export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelT
 			tasksAPI
 				.updateTask(todolistId, taskId, apiModel)
 				.then(() => {
-					dispatch(updateTaskAC({ id: taskId, model: domainModel, todolistId }))
+					dispatch(tasksActions.updateTaskAC({ id: taskId, model: domainModel, todolistId }))
 					dispatch(appActions.setAppStatusAC({ status: 'success' }))
 				})
 				.catch((error) => {
@@ -153,8 +152,3 @@ export type UpdateDomainTaskModelType = {
 	startDate?: string
 	deadline?: string
 }
-export type TasksActionType =
-	| ReturnType<typeof removeTaskAC>
-	| ReturnType<typeof addTaskAC>
-	| ReturnType<typeof updateTaskAC>
-	| ReturnType<typeof setTasksAC>
