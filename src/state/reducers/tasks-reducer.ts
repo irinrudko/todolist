@@ -47,22 +47,19 @@ const addTask = createAppAsyncThunk<{ task: TaskType }, { title: string; todolis
 	}
 )
 
-const removeTask = createAppAsyncThunk<{ id: string; todolistId: string }, { id: string; todolistId: string }>(
-	'tasks/removeTask',
-	async (arg, thunkAPI) => {
-		const { dispatch, rejectWithValue } = thunkAPI
+const removeTask = createAppAsyncThunk<RemoveTaskArgType, RemoveTaskArgType>('tasks/removeTask', async (arg, thunkAPI) => {
+	const { dispatch, rejectWithValue } = thunkAPI
 
-		try {
-			dispatch(appActions.setAppStatusAC({ status: 'loading' }))
-			const res = await tasksAPI.deleteTask(arg.todolistId, arg.id)
-			dispatch(appActions.setAppStatusAC({ status: 'success' }))
-			return arg
-		} catch (e) {
-			handleServerNetworkError(e, dispatch)
-			return rejectWithValue(null)
-		}
+	try {
+		dispatch(appActions.setAppStatusAC({ status: 'loading' }))
+		const res = await tasksAPI.deleteTask(arg)
+		dispatch(appActions.setAppStatusAC({ status: 'success' }))
+		return arg
+	} catch (e) {
+		handleServerNetworkError(e, dispatch)
+		return rejectWithValue(null)
 	}
-)
+})
 
 const slice = createSlice({
 	name: 'tasks',
@@ -161,4 +158,9 @@ export type UpdateDomainTaskModelType = {
 	priority?: TaskPriorities
 	startDate?: string
 	deadline?: string
+}
+
+export type RemoveTaskArgType = {
+	id: string
+	todolistId: string
 }

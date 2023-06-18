@@ -1,3 +1,4 @@
+import { RemoveTaskArgType } from '../state/reducers/tasks-reducer'
 import { instance } from './instance'
 
 export const todolistsAPI = {
@@ -24,8 +25,8 @@ export const tasksAPI = {
 	updateTask(todolistId: string, id: string, model: UpdateTaskModel) {
 		return instance.put(`todo-lists/${todolistId}/tasks/${id}`, model)
 	},
-	deleteTask(todolistId: string, id: string) {
-		return instance.delete(`todo-lists/${todolistId}/tasks/${id}`).then((response) => response.data)
+	deleteTask(arg: RemoveTaskArgType) {
+		return instance.delete(`todo-lists/${arg.todolistId}/tasks/${arg.id}`).then((response) => response.data)
 	},
 }
 
