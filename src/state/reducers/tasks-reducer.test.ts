@@ -1,6 +1,6 @@
 import { v1 } from 'uuid'
 import { TasksStateType } from '../../app/App'
-import { tasksReducer, TaskType, tasksActions } from './tasks-reducer'
+import { tasksReducer, TaskType, tasksActions, tasksThunks } from './tasks-reducer'
 
 //TODO:
 //add tests for new reducers
@@ -109,7 +109,7 @@ it('should remove the correct task', () => {
 
 it('should add a task to the correct todolist', () => {
 	let title = "hey, I'm a new task :) "
-	let task: TaskType = {
+	const task: TaskType = {
 		id: '0',
 		title: title,
 		completed: false,
@@ -123,7 +123,10 @@ it('should add a task to the correct todolist', () => {
 		todoListId: todolistId1,
 	}
 
-	const endState = tasksReducer(startState, tasksActions.addTaskAC({ task }))
+	const endState = tasksReducer(
+		startState,
+		tasksThunks.addTask.fulfilled({ task }, 'requestId', { title, todolistId: todolistId1 })
+	)
 
 	expect(endState[todolistId1].length).toBe(4)
 	expect(endState[todolistId1][0].title).toBe(title)
