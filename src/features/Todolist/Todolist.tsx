@@ -7,7 +7,7 @@ import { EditableSpan } from '../../components/EditableSpan/EditableSpan'
 import ClearIcon from '@mui/icons-material/Clear'
 import { Task } from './Task/Task'
 import { changeTodolistTitleTH, removeTodolistTC, TodolistType, todolistsActions } from '../../state/reducers/todolists-reducer'
-import { removeTaskTC, tasksThunks, updateTaskTC } from '../../state/reducers/tasks-reducer'
+import { tasksThunks, updateTaskTC } from '../../state/reducers/tasks-reducer'
 import { FilterValuesType } from '../../app/App'
 import { useAppDispatch, useAppSelector } from '../../state/store'
 import { TaskStatuses } from '../../API/todolists-api'
@@ -74,7 +74,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 	)
 	const removeTask = useCallback(
 		(id: string, todolistId: string) => {
-			dispatch(removeTaskTC(id, todolistId))
+			dispatch(tasksThunks.removeTask({ id, todolistId }))
 		},
 		[dispatch]
 	)

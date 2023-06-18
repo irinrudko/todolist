@@ -100,7 +100,13 @@ beforeEach(() => {
 })
 
 it('should remove the correct task', () => {
-	const endState = tasksReducer(startState, tasksActions.removeTaskAC({ id: 'taskId', todolistId: todolistId1 }))
+	const endState = tasksReducer(
+		startState,
+		tasksThunks.removeTask.fulfilled({ id: 'taskId', todolistId: todolistId1 }, 'requestId', {
+			id: 'taskId',
+			todolistId: todolistId1,
+		})
+	)
 
 	expect(endState[todolistId1].every((t) => t.id !== 'taskId')).toBeTruthy()
 	expect(endState[todolistId1].length).toBe(2)
