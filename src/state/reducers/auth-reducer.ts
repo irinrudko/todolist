@@ -1,9 +1,8 @@
 import { AppThunk } from './../store'
 import { LoginParamsData, userAPI } from '../../API/user-api'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { todolistsActions } from './todolists-reducer'
 import { appActions } from './app-reducer'
-import { tasksActions } from './tasks-reducer'
+import { clearTasksAndTodolists } from '../../common/actions/common-actions'
 
 const slice = createSlice({
 	name: 'auth',
@@ -40,8 +39,7 @@ export const logoutTC = (): AppThunk => (dispatch) => {
 	userAPI.logout().then((res) => {
 		if (res.resultCode === 0) {
 			dispatch(authActions.setIsLoggedInAC({ isLoggedIn: false }))
-			dispatch(todolistsActions.clearTodolists())
-			dispatch(tasksActions.clearTasks())
+			dispatch(clearTasksAndTodolists())
 			dispatch(appActions.setAppStatusAC({ status: 'success' }))
 		}
 	})

@@ -4,6 +4,7 @@ import { FilterValuesType } from '../../app/App'
 import { handleServerNetworkError } from '../../utils/error-utils'
 import { AppThunk } from '../store'
 import { appActions } from './app-reducer'
+import { clearTasksAndTodolists } from '../../common/actions/common-actions'
 
 const initialState: Array<TodolistType> = []
 
@@ -39,9 +40,11 @@ const slice = createSlice({
 			const index = state.findIndex((tl) => tl.id === action.payload.id)
 			state[index].filter = action.payload.filter
 		},
-		clearTodolists() {
+	},
+	extraReducers: (builder) => {
+		builder.addCase(clearTasksAndTodolists, (state, action) => {
 			return []
-		},
+		})
 	},
 })
 

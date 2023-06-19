@@ -6,6 +6,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { appActions } from './app-reducer'
 import { todolistsActions } from './todolists-reducer'
 import { createAppAsyncThunk } from '../../utils/create-app-async-thunk'
+import { clearTasksAndTodolists } from '../../common/actions/common-actions'
 
 const initialState: TasksStateType = {}
 
@@ -70,9 +71,6 @@ const slice = createSlice({
 			const index = tasks.findIndex((task) => task.id === action.payload.id)
 			tasks[index] = { ...tasks[index], ...action.payload.model }
 		},
-		clearTasks() {
-			return {}
-		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchTasks.fulfilled, (state, action) => {
@@ -98,6 +96,9 @@ const slice = createSlice({
 			action.payload.todolists.forEach((tl) => {
 				state[tl.id] = []
 			})
+		})
+		builder.addCase(clearTasksAndTodolists, (state, action) => {
+			return {}
 		})
 	},
 })
