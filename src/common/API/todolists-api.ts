@@ -1,4 +1,5 @@
 import { RemoveTaskArgType } from '../../features/Todolists/Tasks/tasksSlice'
+import { ChangeTodolistArgType } from '../../features/Todolists/todolistsSlice'
 import { instance } from './instance'
 
 export const todolistsAPI = {
@@ -8,8 +9,8 @@ export const todolistsAPI = {
 	createTodolist(title: string) {
 		return instance.post('todo-lists', { title }).then((response) => response.data)
 	},
-	updateTodolist(id: string, title: string) {
-		return instance.put(`todo-lists/${id}`, { title }).then((response) => response.data)
+	updateTodolist(arg: ChangeTodolistArgType) {
+		return instance.put(`todo-lists/${arg.id}`, { title: arg.title }).then((response) => response.data)
 	},
 	deleteTodolist(id: string) {
 		return instance.delete(`todo-lists/${id}`).then((response) => response.data)

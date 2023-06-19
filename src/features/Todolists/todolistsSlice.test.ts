@@ -28,7 +28,10 @@ it('should remove correct todolist', () => {
 test('should change todolist title', () => {
 	const endState = todolistsSlice(
 		startState,
-		todolistsActions.changeTodolistTitleAC({ id: todolistId2, title: 'newTodolistTitle' })
+		todolistsThunks.changeTodolistTitle.fulfilled({ id: todolistId2, title: 'newTodolistTitle' }, 'requestId', {
+			id: todolistId2,
+			title: 'newTodolistTitle',
+		})
 	)
 
 	expect(endState[0].title).toBe('What to learn')

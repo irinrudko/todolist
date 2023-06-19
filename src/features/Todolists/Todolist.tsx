@@ -6,7 +6,7 @@ import { AddItemForm } from '../../common/components/AddItemForm/AddItemForm'
 import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
 import ClearIcon from '@mui/icons-material/Clear'
 import { Task } from './Tasks/Task'
-import { changeTodolistTitleTH, TodolistType, todolistsActions, todolistsThunks } from './todolistsSlice'
+import { TodolistType, todolistsActions, todolistsThunks } from './todolistsSlice'
 import { tasksThunks } from './Tasks/tasksSlice'
 import { FilterValuesType } from '../../app/App'
 import { useAppDispatch, useAppSelector } from '../../app/store'
@@ -62,7 +62,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 	}
 	const changeTodolistTitle = useCallback(
 		(title: string) => {
-			dispatch(changeTodolistTitleTH(props.id, title))
+			dispatch(todolistsThunks.changeTodolistTitle({ id: props.id, title }))
 		},
 		[dispatch, props.id]
 	)
