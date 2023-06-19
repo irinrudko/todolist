@@ -24,7 +24,7 @@ export const App = () => {
 
 	useEffect(() => {
 		dispatch(initializeAppTC())
-	}, [])
+	}, [dispatch])
 
 	if (!isLoggedIn) {
 		return (

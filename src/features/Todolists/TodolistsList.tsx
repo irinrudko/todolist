@@ -13,7 +13,7 @@ export const TodolistsList = () => {
 
 	useEffect(() => {
 		isLoggedIn && dispatch(fetchTodoliststsTC())
-	}, [])
+	}, [isLoggedIn, dispatch])
 
 	return (
 		<>

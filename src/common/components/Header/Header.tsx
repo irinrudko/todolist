@@ -24,7 +24,7 @@ export const Header = () => {
 
 	const logoutHandler = useCallback(() => {
 		dispatch(logoutTC())
-	}, [])
+	}, [dispatch])
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>

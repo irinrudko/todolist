@@ -32,7 +32,7 @@ export const Task: React.FC<TaskPropsType> = React.memo((props) => {
 		(newTitle: string) => {
 			props.changeSpanValue(newTitle, props.task.id, props.todolistId)
 		},
-		[props.changeSpanValue, props.task.id, props.todolistId]
+		[props]
 	)
 
 	return (
