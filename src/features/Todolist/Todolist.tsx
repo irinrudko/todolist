@@ -86,8 +86,8 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 		[dispatch]
 	)
 	const changeSpanValue = useCallback(
-		(title: string, taskId: string, todolistId: string) => {
-			dispatch(tasksThunks.updateTask({ id: taskId, model: { title }, todolistId }))
+		(title: string, id: string, todolistId: string) => {
+			dispatch(tasksThunks.updateTask({ id, model: { title }, todolistId }))
 		},
 		[dispatch]
 	)
