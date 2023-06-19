@@ -6,7 +6,7 @@ import { AddItemForm } from '../../common/components/AddItemForm/AddItemForm'
 import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
 import ClearIcon from '@mui/icons-material/Clear'
 import { Task } from './Tasks/Task'
-import { changeTodolistTitleTH, removeTodolistTC, TodolistType, todolistsActions } from './todolistsSlice'
+import { changeTodolistTitleTH, TodolistType, todolistsActions, todolistsThunks } from './todolistsSlice'
 import { tasksThunks } from './Tasks/tasksSlice'
 import { FilterValuesType } from '../../app/App'
 import { useAppDispatch, useAppSelector } from '../../app/store'
@@ -57,7 +57,7 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 	const removeTodoList = () => {
 		let isConfirmed = window.confirm('Are you sure you want to delete this Todolist?')
 		if (isConfirmed) {
-			dispatch(removeTodolistTC(props.id))
+			dispatch(todolistsThunks.removeTodolist(props.id))
 		} else return
 	}
 	const changeTodolistTitle = useCallback(

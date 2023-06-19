@@ -1,5 +1,5 @@
 import { v1 } from 'uuid'
-import { TodolistType, todolistsSlice, todolistsActions } from './todolistsSlice'
+import { TodolistType, todolistsSlice, todolistsActions, todolistsThunks } from './todolistsSlice'
 
 let todolistId1: string
 let todolistId2: string
@@ -16,7 +16,10 @@ beforeEach(() => {
 })
 
 it('should remove correct todolist', () => {
-	const endState = todolistsSlice(startState, todolistsActions.removeTodolistAC({ id: todolistId1 }))
+	const endState = todolistsSlice(
+		startState,
+		todolistsThunks.removeTodolist.fulfilled({ id: todolistId1 }, 'requestId', todolistId1)
+	)
 
 	expect(endState.length).toBe(1)
 	expect(endState[0].id).toBe(todolistId2)
