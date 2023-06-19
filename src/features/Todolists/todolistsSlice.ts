@@ -3,7 +3,7 @@ import { todolistsAPI } from '../../common/API/todolists-api'
 import { FilterValuesType } from '../../app/App'
 import { handleServerNetworkError } from '../../common/utils/error-utils'
 import { AppThunk } from '../../app/store'
-import { appActions } from '../../app/app-reducer'
+import { appActions } from '../../app/appSlice'
 import { clearTasksAndTodolists } from '../../common/actions/common-actions'
 
 const initialState: Array<TodolistType> = []
@@ -48,7 +48,7 @@ const slice = createSlice({
 	},
 })
 
-export const todolistsReducer = slice.reducer
+export const todolistsSlice = slice.reducer
 export const todolistsActions = slice.actions
 
 export const fetchTodoliststTC = (): AppThunk => {

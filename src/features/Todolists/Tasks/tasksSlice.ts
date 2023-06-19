@@ -2,7 +2,7 @@ import { TaskPriorities, tasksAPI, TaskStatuses, UpdateTaskModel } from '../../.
 import { TasksStateType } from '../../../app/App'
 import { handleServerNetworkError } from '../../../common/utils/error-utils'
 import { createSlice } from '@reduxjs/toolkit'
-import { appActions } from '../../../app/app-reducer'
+import { appActions } from '../../../app/appSlice'
 import { todolistsActions } from '../todolistsSlice'
 import { createAppAsyncThunk } from '../../../common/utils/create-app-async-thunk'
 import { clearTasksAndTodolists } from '../../../common/actions/common-actions'
@@ -129,7 +129,7 @@ const slice = createSlice({
 	},
 })
 
-export const tasksReducer = slice.reducer
+export const tasksSlice = slice.reducer
 export const tasksActions = slice.actions
 export const tasksThunks = { fetchTasks, addTask, removeTask, updateTask }
 

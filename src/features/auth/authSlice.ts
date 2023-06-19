@@ -1,7 +1,7 @@
 import { AppThunk } from '../../app/store'
 import { LoginParamsData, userAPI } from '../../common/API/user-api'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { appActions } from '../../app/app-reducer'
+import { appActions } from '../../app/appSlice'
 import { clearTasksAndTodolists } from '../../common/actions/common-actions'
 
 const slice = createSlice({
@@ -16,7 +16,7 @@ const slice = createSlice({
 	},
 })
 
-export const authReducer = slice.reducer
+export const authSlice = slice.reducer
 export const authActions = slice.actions
 
 //thunks

@@ -1,6 +1,6 @@
 import { v1 } from 'uuid'
 import { TasksStateType } from '../../../app/App'
-import { tasksReducer, TaskType, tasksThunks } from './tasksSlice'
+import { TaskType, tasksSlice, tasksThunks } from './tasksSlice'
 
 //TODO:
 //add tests for new reducers
@@ -101,7 +101,7 @@ beforeEach(() => {
 
 it('should remove the correct task', () => {
 	const args = { id: 'id', todolistId: todolistId1 }
-	const endState = tasksReducer(startState, tasksThunks.removeTask.fulfilled(args, 'requestId', args))
+	const endState = tasksSlice(startState, tasksThunks.removeTask.fulfilled(args, 'requestId', args))
 
 	expect(endState[todolistId1].every((t) => t.id !== 'id')).toBeTruthy()
 	expect(endState[todolistId1].length).toBe(2)
@@ -124,7 +124,7 @@ it('should add a task to the correct todolist', () => {
 		todoListId: todolistId1,
 	}
 
-	const endState = tasksReducer(
+	const endState = tasksSlice(
 		startState,
 		tasksThunks.addTask.fulfilled({ task }, 'requestId', { title, todolistId: todolistId1 })
 	)
@@ -138,14 +138,14 @@ it('should add a task to the correct todolist', () => {
 
 it('should update the task status to not completed', () => {
 	const task = { id: 'taskToUpdateId', model: { status: 0 }, todolistId: todolistId2 }
-	const endState = tasksReducer(startState, tasksThunks.updateTask.fulfilled(task, 'requestId', task))
+	const endState = tasksSlice(startState, tasksThunks.updateTask.fulfilled(task, 'requestId', task))
 
 	expect(endState[todolistId2][0].status).toBe(0)
 	expect(endState[todolistId2][0].id).toBe('taskToUpdateId')
 })
 it('should change the correct task title', () => {
 	const task = { id: 'taskToUpdateId', model: { title: 'changedTitle' }, todolistId: todolistId2 }
-	const endState = tasksReducer(startState, tasksThunks.updateTask.fulfilled(task, 'requestId', task))
+	const endState = tasksSlice(startState, tasksThunks.updateTask.fulfilled(task, 'requestId', task))
 
 	expect(endState[todolistId2][0].title).toBe('changedTitle')
 	expect(endState[todolistId2][0].id).toBe('taskToUpdateId')
