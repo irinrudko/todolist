@@ -24,13 +24,13 @@ export const useStyles = makeStyles({
 })
 
 export const Todolist: React.FC<TodolistType> = React.memo((props) => {
-	useEffect(() => {
-		dispatch(tasksThunks.fetchTasks(props.id))
-	}, [props.id])
-
 	const classes = useStyles()
 	const dispatch = useAppDispatch()
 	const tasks = useAppSelector((state) => state.tasks[props.id])
+
+	useEffect(() => {
+		dispatch(tasksThunks.fetchTasks(props.id))
+	}, [dispatch, props.id])
 
 	///tasks filter
 	let allTodolistTasks = tasks
@@ -42,10 +42,17 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 	if (props.filter === 'completed') {
 		tasksForTodolist = allTodolistTasks.filter((t) => t.status === TaskStatuses.Completed)
 	}
+
+	const changeFilter = useCallback(
+		(filter: FilterValuesType, todolistId: string) => {
+			dispatch(todolistsActions.changeTodolistFilterAC({ filter, id: todolistId }))
+		},
+		[dispatch]
+	)
 	///tasks filter
-	const onAllClickHandler = useCallback(() => changeFilter('all', props.id), [props.id])
-	const onActiveClickHandler = useCallback(() => changeFilter('active', props.id), [props.id])
-	const onCompletedClickHandler = useCallback(() => changeFilter('completed', props.id), [props.id])
+	const onAllClickHandler = useCallback(() => changeFilter('all', props.id), [props.id, changeFilter])
+	const onActiveClickHandler = useCallback(() => changeFilter('active', props.id), [props.id, changeFilter])
+	const onCompletedClickHandler = useCallback(() => changeFilter('completed', props.id), [props.id, changeFilter])
 
 	const removeTodoList = () => {
 		let isConfirmed = window.confirm('Are you sure you want to delete this Todolist?')
@@ -58,12 +65,6 @@ export const Todolist: React.FC<TodolistType> = React.memo((props) => {
 			dispatch(changeTodolistTitleTH(props.id, title))
 		},
 		[dispatch, props.id]
-	)
-	const changeFilter = useCallback(
-		(filter: FilterValuesType, todolistId: string) => {
-			dispatch(todolistsActions.changeTodolistFilterAC({ filter, id: todolistId }))
-		},
-		[dispatch]
 	)
 
 	const addTask = useCallback(
