@@ -52,7 +52,7 @@ const removeTask = createAppAsyncThunk<RemoveTaskArgType, RemoveTaskArgType>('ta
 
 	try {
 		dispatch(appActions.setAppStatusAC({ status: 'loading' }))
-		const res = await tasksAPI.deleteTask(arg)
+		await tasksAPI.deleteTask(arg)
 		dispatch(appActions.setAppStatusAC({ status: 'success' }))
 		return arg
 	} catch (e) {
@@ -79,7 +79,7 @@ const updateTask = createAppAsyncThunk<UpdateTaskArgType, UpdateTaskArgType>('ta
 				completed: task.completed,
 				...arg.model,
 			}
-			const res = await tasksAPI.updateTask(arg.todolistId, arg.id, apiModel)
+			await tasksAPI.updateTask(arg.todolistId, arg.id, apiModel)
 			dispatch(appActions.setAppStatusAC({ status: 'success' }))
 		}
 		return arg
