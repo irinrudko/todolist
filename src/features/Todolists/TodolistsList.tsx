@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { Grid, Paper } from '@mui/material'
 import { Todolist } from './Todolist'
-import { fetchTodoliststTC as fetchTodoliststsTC } from './todolistsSlice'
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { selectIsLoggedIn } from '../auth/auth-selectors'
 import { selectTodolists } from './todolists-selectors'
+import { todolistsThunks } from './todolistsSlice'
 
 export const TodolistsList = () => {
 	const dispatch = useAppDispatch()
@@ -12,7 +12,7 @@ export const TodolistsList = () => {
 	const isLoggedIn = useAppSelector(selectIsLoggedIn)
 
 	useEffect(() => {
-		isLoggedIn && dispatch(fetchTodoliststsTC())
+		isLoggedIn && dispatch(todolistsThunks.fetchTodoliststs())
 	}, [isLoggedIn, dispatch])
 
 	return (
