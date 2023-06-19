@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Dispatch } from 'redux'
-import { userAPI } from '../../API/user-api'
-import { authActions } from './auth-reducer'
+import { userAPI } from '../common/API/user-api'
+import { authActions } from '../features/auth/authSlice'
 
 const initialState: AppInitialStateType = {
 	isInitialized: false,

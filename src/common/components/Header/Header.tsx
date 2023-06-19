@@ -7,9 +7,9 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import { makeStyles } from '@mui/styles'
-import { useAppDispatch, useAppSelector } from '../../state/store'
-import { logoutTC } from '../../state/reducers/auth-reducer'
-import { selectIsLoggedIn } from '../../features/Login/auth-selectors'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { logoutTC } from '../../../features/auth/authSlice'
+import { selectIsLoggedIn } from '../../../features/auth/auth-selectors'
 
 const useStyles = makeStyles({
 	toolbar: {

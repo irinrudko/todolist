@@ -1,6 +1,6 @@
 import { v1 } from 'uuid'
-import { TasksStateType } from '../../app/App'
-import { tasksReducer, TaskType, tasksThunks } from './tasks-reducer'
+import { TasksStateType } from '../../../app/App'
+import { tasksReducer, TaskType, tasksThunks } from './tasksSlice'
 
 //TODO:
 //add tests for new reducers

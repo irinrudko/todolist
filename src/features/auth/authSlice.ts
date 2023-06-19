@@ -1,7 +1,7 @@
-import { AppThunk } from './../store'
-import { LoginParamsData, userAPI } from '../../API/user-api'
+import { AppThunk } from '../../app/store'
+import { LoginParamsData, userAPI } from '../../common/API/user-api'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { appActions } from './app-reducer'
+import { appActions } from '../../app/app-reducer'
 import { clearTasksAndTodolists } from '../../common/actions/common-actions'
 
 const slice = createSlice({

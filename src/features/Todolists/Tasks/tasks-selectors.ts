@@ -1,3 +1,3 @@
-import { AppStateType } from '../../state/store'
+import { AppStateType } from '../../../app/store'
 
 export const selectTasks = (state: AppStateType) => state.tasks

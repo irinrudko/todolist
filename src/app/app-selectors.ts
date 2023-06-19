@@ -1,4 +1,4 @@
-import { AppStateType } from '../state/store'
+import { AppStateType } from './store'
 
 export const selectAppStatus = (state: AppStateType) => state.app.status
 export const selectAppError = (state: AppStateType) => state.app.error

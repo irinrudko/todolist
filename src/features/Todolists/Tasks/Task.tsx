@@ -4,9 +4,9 @@ import { ChangeEvent } from 'react'
 import RemoveIcon from '@mui/icons-material/Remove'
 import { useStyles } from '../Todolist'
 import { useCallback } from 'react'
-import { TaskType } from '../../../state/reducers/tasks-reducer'
-import { TaskStatuses } from '../../../API/todolists-api'
-import { EditableSpan } from '../../../components/EditableSpan/EditableSpan'
+import { TaskType } from './tasksSlice'
+import { TaskStatuses } from '../../../common/API/todolists-api'
+import { EditableSpan } from '../../../common/components/EditableSpan/EditableSpan'
 
 type TaskPropsType = {
 	task: TaskType

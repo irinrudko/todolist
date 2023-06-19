@@ -1,3 +1,3 @@
-import { AppStateType } from '../../state/store'
+import { AppStateType } from '../../app/store'
 
 export const selectIsLoggedIn = (state: AppStateType) => state.auth.isLoggedIn

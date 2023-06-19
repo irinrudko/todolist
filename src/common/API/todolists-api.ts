@@ -1,4 +1,4 @@
-import { RemoveTaskArgType } from '../state/reducers/tasks-reducer'
+import { RemoveTaskArgType } from '../../features/Todolists/Tasks/tasksSlice'
 import { instance } from './instance'
 
 export const todolistsAPI = {

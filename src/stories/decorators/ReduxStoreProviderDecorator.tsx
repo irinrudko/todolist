@@ -2,8 +2,8 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import { tasksReducer } from '../../state/reducers/tasks-reducer'
-import { todolistsReducer } from '../../state/reducers/todolists-reducer'
+import { tasksReducer } from '../../features/Todolists/Tasks/tasksSlice'
+import { todolistsReducer } from '../../features/Todolists/todolistsSlice'
 
 type StorybookStoreType = ReturnType<typeof storybookRootReducer>
 

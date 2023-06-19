@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { todolistsAPI } from '../../API/todolists-api'
+import { todolistsAPI } from '../../common/API/todolists-api'
 import { FilterValuesType } from '../../app/App'
-import { handleServerNetworkError } from '../../utils/error-utils'
-import { AppThunk } from '../store'
-import { appActions } from './app-reducer'
+import { handleServerNetworkError } from '../../common/utils/error-utils'
+import { AppThunk } from '../../app/store'
+import { appActions } from '../../app/app-reducer'
 import { clearTasksAndTodolists } from '../../common/actions/common-actions'
 
 const initialState: Array<TodolistType> = []
