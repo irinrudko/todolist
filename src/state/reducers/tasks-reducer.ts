@@ -1,8 +1,7 @@
-import { AppStateType, AppThunk } from './../store'
 import { TaskPriorities, tasksAPI, TaskStatuses, UpdateTaskModel } from '../../API/todolists-api'
 import { TasksStateType } from '../../app/App'
 import { handleServerNetworkError } from '../../utils/error-utils'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { appActions } from './app-reducer'
 import { todolistsActions } from './todolists-reducer'
 import { createAppAsyncThunk } from '../../utils/create-app-async-thunk'
@@ -61,17 +60,39 @@ const removeTask = createAppAsyncThunk<RemoveTaskArgType, RemoveTaskArgType>('ta
 		return rejectWithValue(null)
 	}
 })
+const updateTask = createAppAsyncThunk<UpdateTaskArgType, UpdateTaskArgType>('tasks/updateTask', async (arg, thunkAPI) => {
+	const { dispatch, rejectWithValue, getState } = thunkAPI
+	const state = getState()
+	const task = state.tasks[arg.todolistId].find((t) => t.id === arg.id)
+
+	try {
+		dispatch(appActions.setAppStatusAC({ status: 'loading' }))
+
+		if (task) {
+			const apiModel: UpdateTaskModel = {
+				status: task.status,
+				title: task.title,
+				description: task.description,
+				priority: task.priority,
+				startDate: task.startDate,
+				deadline: task.deadline,
+				completed: task.completed,
+				...arg.model,
+			}
+			const res = await tasksAPI.updateTask(arg.todolistId, arg.id, apiModel)
+			dispatch(appActions.setAppStatusAC({ status: 'success' }))
+		}
+		return arg
+	} catch (e) {
+		handleServerNetworkError(e, dispatch)
+		return rejectWithValue(null)
+	}
+})
 
 const slice = createSlice({
 	name: 'tasks',
 	initialState,
-	reducers: {
-		updateTaskAC(state, action: PayloadAction<{ id: string; model: UpdateDomainTaskModelType; todolistId: string }>) {
-			const tasks = state[action.payload.todolistId]
-			const index = tasks.findIndex((task) => task.id === action.payload.id)
-			tasks[index] = { ...tasks[index], ...action.payload.model }
-		},
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder.addCase(fetchTasks.fulfilled, (state, action) => {
 			state[action.payload.todolistId] = action.payload.tasks
@@ -79,6 +100,11 @@ const slice = createSlice({
 		builder.addCase(addTask.fulfilled, (state, action) => {
 			const tasks = state[action.payload.task.todoListId]
 			tasks.unshift(action.payload.task)
+		})
+		builder.addCase(updateTask.fulfilled, (state, action) => {
+			const tasks = state[action.payload.todolistId]
+			const index = tasks.findIndex((task) => task.id === action.payload.id)
+			tasks[index] = { ...tasks[index], ...action.payload.model }
 		})
 		builder.addCase(removeTask.fulfilled, (state, action) => {
 			const tasks = state[action.payload.todolistId]
@@ -105,39 +131,7 @@ const slice = createSlice({
 
 export const tasksReducer = slice.reducer
 export const tasksActions = slice.actions
-export const tasksThunks = { fetchTasks, addTask, removeTask }
-
-export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelType, todolistId: string): AppThunk => {
-	return (dispatch, getState: () => AppStateType) => {
-		dispatch(appActions.setAppStatusAC({ status: 'loading' }))
-
-		const state = getState()
-		const task = state.tasks[todolistId].find((t) => t.id === taskId)
-
-		if (task) {
-			const apiModel: UpdateTaskModel = {
-				status: task.status,
-				title: task.title,
-				description: task.description,
-				priority: task.priority,
-				startDate: task.startDate,
-				deadline: task.deadline,
-				completed: task.completed,
-				...domainModel,
-			}
-
-			tasksAPI
-				.updateTask(todolistId, taskId, apiModel)
-				.then(() => {
-					dispatch(tasksActions.updateTaskAC({ id: taskId, model: domainModel, todolistId }))
-					dispatch(appActions.setAppStatusAC({ status: 'success' }))
-				})
-				.catch((error) => {
-					handleServerNetworkError(error, dispatch)
-				})
-		}
-	}
-}
+export const tasksThunks = { fetchTasks, addTask, removeTask, updateTask }
 
 export type TaskType = {
 	title: string
@@ -163,5 +157,11 @@ export type UpdateDomainTaskModelType = {
 
 export type RemoveTaskArgType = {
 	id: string
+	todolistId: string
+}
+
+export type UpdateTaskArgType = {
+	id: string
+	model: UpdateDomainTaskModelType
 	todolistId: string
 }

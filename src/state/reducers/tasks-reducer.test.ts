@@ -1,6 +1,6 @@
 import { v1 } from 'uuid'
 import { TasksStateType } from '../../app/App'
-import { tasksReducer, TaskType, tasksActions, tasksThunks } from './tasks-reducer'
+import { tasksReducer, TaskType, tasksThunks } from './tasks-reducer'
 
 //TODO:
 //add tests for new reducers
@@ -16,7 +16,7 @@ beforeEach(() => {
 	startState = {
 		[todolistId1]: [
 			{
-				id: 'taskId',
+				id: 'id',
 				title: 'React',
 				completed: true,
 				addedDate: '',
@@ -100,10 +100,10 @@ beforeEach(() => {
 })
 
 it('should remove the correct task', () => {
-	const args = { id: 'taskId', todolistId: todolistId1 }
+	const args = { id: 'id', todolistId: todolistId1 }
 	const endState = tasksReducer(startState, tasksThunks.removeTask.fulfilled(args, 'requestId', args))
 
-	expect(endState[todolistId1].every((t) => t.id !== 'taskId')).toBeTruthy()
+	expect(endState[todolistId1].every((t) => t.id !== 'id')).toBeTruthy()
 	expect(endState[todolistId1].length).toBe(2)
 	expect(endState[todolistId2].length).toBe(3)
 })
@@ -137,19 +137,15 @@ it('should add a task to the correct todolist', () => {
 })
 
 it('should update the task status to not completed', () => {
-	const endState = tasksReducer(
-		startState,
-		tasksActions.updateTaskAC({ id: 'taskToUpdateId', model: { status: 0 }, todolistId: todolistId2 })
-	)
+	const task = { id: 'taskToUpdateId', model: { status: 0 }, todolistId: todolistId2 }
+	const endState = tasksReducer(startState, tasksThunks.updateTask.fulfilled(task, 'requestId', task))
 
 	expect(endState[todolistId2][0].status).toBe(0)
 	expect(endState[todolistId2][0].id).toBe('taskToUpdateId')
 })
 it('should change the correct task title', () => {
-	const endState = tasksReducer(
-		startState,
-		tasksActions.updateTaskAC({ id: 'taskToUpdateId', model: { title: 'changedTitle' }, todolistId: todolistId2 })
-	)
+	const task = { id: 'taskToUpdateId', model: { title: 'changedTitle' }, todolistId: todolistId2 }
+	const endState = tasksReducer(startState, tasksThunks.updateTask.fulfilled(task, 'requestId', task))
 
 	expect(endState[todolistId2][0].title).toBe('changedTitle')
 	expect(endState[todolistId2][0].id).toBe('taskToUpdateId')
