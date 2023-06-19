@@ -4,8 +4,8 @@ import AddIcon from '@mui/icons-material/Add'
 import { AddItemForm } from '../../../common/components/AddItemForm/AddItemForm'
 import { makeStyles } from '@mui/styles'
 import { useCallback } from 'react'
-import { addTodolistTC } from '../todolistsSlice'
 import { useAppDispatch } from '../../../app/store'
+import { todolistsThunks } from '../todolistsSlice'
 
 const useStyles = makeStyles({
 	addButton: {},
@@ -41,7 +41,7 @@ export const AddNewTodolist = React.memo((props) => {
 
 	const addTodolist = useCallback(
 		(title: string) => {
-			dispatch(addTodolistTC(title))
+			dispatch(todolistsThunks.addTodolist(title))
 			handleClose()
 		},
 		[dispatch]
